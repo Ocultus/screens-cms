@@ -1,10 +1,14 @@
+volumes: 
+    - postgres_data : 
+            
 services:
     postgres:
-        image: postgres
-        container_name: postgres_db
+        image: postgres:13.3-alpine
+        environment: 
+            POSTGRES_DB: db_name
+            POSTGRES_USER: db_user
+            POSTGRES_PASSWORD: db_password
         ports: 
             - 5432:5432
-        env_file: 
-            - ./.env
         volumes: 
-            - /path-to-volumes/
+            -postgres_data: - /path-to-volumes/
