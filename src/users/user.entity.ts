@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Screen } from 'src/screens/screen.entity';
+import { Event } from '../events/event.entity';
 
 const tableName = 'users';
 @Entity({
@@ -13,4 +15,11 @@ export class User {
 
   @Column({ type: 'varchar' })
   password: string;
+
+  //Relations
+  @OneToMany(() => Event, (event) => event.user)
+  events?: Event[];
+
+  @OneToMany(() => Screen, (screen) => screen.user)
+  screens?: Screen[];
 }
