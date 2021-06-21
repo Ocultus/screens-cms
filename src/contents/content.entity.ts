@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { PlaylistToContent } from 'src/playlist-to-contents/playlist-to-content.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 enum contentType {
   video,
@@ -21,13 +22,9 @@ export class Content {
 
   //Relations
 
-  /*
-  @ManyToMany(() => Playlist)
-  @JoinTable({
-    name: 'playlist-to-contents',
-    joinColumn: { name: 'content', referencedColumnName: 'contentId' },
-    inverseJoinColumn: { name: 'playlist', referencedColumnName: 'playlistId' },
-  })
-  playlists?: Playlist[];
-  */
+  @OneToMany(
+    () => PlaylistToContent,
+    (playlistToContent) => playlistToContent.content,
+  )
+  playlistToContent?: PlaylistToContent[];
 }

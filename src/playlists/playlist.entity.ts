@@ -3,13 +3,12 @@ import { Screen } from 'src/screens/screen.entity';
 import {
   Column,
   Entity,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Content } from 'src/contents/content.entity';
+import { PlaylistToContent } from 'src/playlist-to-contents/playlist-to-content.entity';
 
 const tableName = 'playlists';
 @Entity({
@@ -41,13 +40,9 @@ export class Playlist {
   })
   screen?: Screen;
 
-  /*
-  @ManyToMany(() => ContentToPlaylist)
-  @JoinTable({
-    name: 'playlist-to-contents',
-    joinColumn: { name: 'playlist', referencedColumnName: 'playlistId' },
-    inverseJoinColumn: { name: 'content', referencedColumnName: 'contentId' },
-  })
-  contents?: Content[];
-  */
+  @OneToMany(
+    () => PlaylistToContent,
+    (playlistToContent) => playlistToContent.playlist,
+  )
+  playlistToContent?: PlaylistToContent[];
 }

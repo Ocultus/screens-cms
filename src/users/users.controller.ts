@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthService } from 'src/auth/services/auth.service';
 import { AuthDto, ResponseAuthDto } from '../auth/dto/auth.dto';
 import { ProfileDto } from '../auth/dto/profile.dto';
@@ -8,6 +8,7 @@ import { LocalAuthGuard } from '../auth/guards/local-auth.guard';
 import { User } from './user.entity';
 import { User as UserDecorator } from './users.decorator';
 
+@ApiTags('users')
 @Controller('users')
 export class UserController {
   constructor(private readonly authService: AuthService) {}
