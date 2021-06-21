@@ -3,10 +3,13 @@ import { Screen } from 'src/screens/screen.entity';
 import {
   Column,
   Entity,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Content } from 'src/contents/contents.entity';
 
 const tableName = 'playlists';
 @Entity({
@@ -37,4 +40,12 @@ export class Playlist {
     cascade: true,
   })
   screen?: Screen;
+
+  @ManyToMany(() => Content)
+  @JoinTable({
+    name: 'playlist-to-contents',
+    joinColumn: { name: 'playlist', referencedColumnName: 'playlistId' },
+    inverseJoinColumn: { name: 'content', referencedColumnName: 'contentId' },
+  })
+  contents?: Content[];
 }
