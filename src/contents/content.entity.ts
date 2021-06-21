@@ -1,11 +1,4 @@
-import { Playlist } from 'src/playlists/playlist.entity';
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 enum contentType {
   video,
@@ -23,11 +16,12 @@ export class Content {
   @Column({ type: 'text' })
   url: string;
 
-  @Column({ type: 'enum', enum: true })
+  @Column({ type: 'enum', enum: contentType })
   contentType: contentType;
 
   //Relations
 
+  /*
   @ManyToMany(() => Playlist)
   @JoinTable({
     name: 'playlist-to-contents',
@@ -35,4 +29,5 @@ export class Content {
     inverseJoinColumn: { name: 'playlist', referencedColumnName: 'playlistId' },
   })
   playlists?: Playlist[];
+  */
 }

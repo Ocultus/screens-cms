@@ -8,11 +8,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CryptoService } from 'src/utils/crypto/crypto.service';
 import { AuthDto, ResponseAuthDto } from '../dto/auth.dto';
 import { ProfileDto } from '../dto/profile.dto';
-import { User } from '../user.entity';
-import { UserRepository } from '../user.repository';
+import { User } from '../../users/user.entity';
+import { UserRepository } from '../../users/user.repository';
 
 @Injectable()
-export class UserService {
+export class AuthService {
   constructor(
     @InjectRepository(UserRepository)
     private readonly userRepository: UserRepository,
@@ -63,7 +63,7 @@ export class UserService {
     }
     const hashedPassword = await this.cryptoService.getHashPassword(password);
     const savedUser = await this.save(email, hashedPassword);
-    const payload = { email, sub: savedUser.id };
+    const payload = { email, userId: savedUser.id };
     const accessToken = this.jwtService.sign(payload);
     return {
       accessToken: accessToken,

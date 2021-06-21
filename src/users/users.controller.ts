@@ -1,16 +1,16 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
-import { AuthDto, ResponseAuthDto } from './dto/auth.dto';
-import { ProfileDto } from './dto/profile.dto';
-import { JwtAuthGuard } from './guards/jwt.guard';
-import { LocalAuthGuard } from './guards/local-auth.guard';
-import { UserService } from './services/users.service';
+import { AuthService } from 'src/auth/services/auth.service';
+import { AuthDto, ResponseAuthDto } from '../auth/dto/auth.dto';
+import { ProfileDto } from '../auth/dto/profile.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
+import { LocalAuthGuard } from '../auth/guards/local-auth.guard';
 import { User } from './user.entity';
 import { User as UserDecorator } from './users.decorator';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('sign-up')
   @ApiOperation({ summary: 'User sign-up' })
@@ -19,7 +19,7 @@ export class UserController {
     type: ResponseAuthDto,
   })
   async signUp(@Body() signUpDto: AuthDto): Promise<ResponseAuthDto> {
-    return this.userService.signUp(signUpDto);
+    return this.authService.signUp(signUpDto);
   }
 
   @UseGuards(LocalAuthGuard)
@@ -30,7 +30,7 @@ export class UserController {
   })
   @Post('sign-in')
   async signIn(@Body() signInDto: AuthDto): Promise<ResponseAuthDto> {
-    return this.userService.signIn(signInDto);
+    return this.authService.signIn(signInDto);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -41,6 +41,6 @@ export class UserController {
   })
   @Get('profile')
   async getProfile(@UserDecorator() user: User): Promise<ProfileDto> {
-    return this.userService.getProfile(user);
+    return this.authService.getProfile(user);
   }
 }

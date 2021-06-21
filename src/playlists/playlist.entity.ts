@@ -9,7 +9,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Content } from 'src/contents/contents.entity';
+import { Content } from 'src/contents/content.entity';
 
 const tableName = 'playlists';
 @Entity({
@@ -41,11 +41,13 @@ export class Playlist {
   })
   screen?: Screen;
 
-  @ManyToMany(() => Content)
+  /*
+  @ManyToMany(() => ContentToPlaylist)
   @JoinTable({
     name: 'playlist-to-contents',
     joinColumn: { name: 'playlist', referencedColumnName: 'playlistId' },
     inverseJoinColumn: { name: 'content', referencedColumnName: 'contentId' },
   })
   contents?: Content[];
+  */
 }
