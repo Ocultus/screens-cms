@@ -8,7 +8,7 @@ import { UserService } from './services/users.service';
 import { User } from './user.entity';
 import { User as UserDecorator } from './users.decorator';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

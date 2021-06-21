@@ -1,8 +1,15 @@
 import { Event } from 'src/events/event.entity';
+import { Playlist } from 'src/playlists/playlist.entity';
 import { User } from 'src/users/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-const tableName = 'screen';
+const tableName = 'screens';
 @Entity({ name: tableName })
 export class Screen {
   @PrimaryGeneratedColumn('uuid')
@@ -26,4 +33,7 @@ export class Screen {
     onDelete: 'CASCADE',
   })
   user?: User;
+
+  @OneToOne(() => Playlist, (playlist) => playlist.screen)
+  playlist?: Playlist;
 }

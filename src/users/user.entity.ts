@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Screen } from 'src/screens/screen.entity';
 import { Event } from '../events/event.entity';
+import { Playlist } from 'src/playlists/playlist.entity';
 
 const tableName = 'users';
 @Entity({
@@ -22,4 +23,7 @@ export class User {
 
   @OneToMany(() => Screen, (screen) => screen.user)
   screens?: Screen[];
+
+  @OneToMany(() => Playlist, (playlist) => playlist.user)
+  playlists?: Playlist;
 }
