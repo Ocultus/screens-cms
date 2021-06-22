@@ -2,6 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Screen } from 'src/screens/screen.entity';
 import { Event } from '../events/event.entity';
 import { Playlist } from 'src/playlists/playlist.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 const tableName = 'users';
 @Entity({

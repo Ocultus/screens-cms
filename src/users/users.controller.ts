@@ -1,5 +1,18 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { AuthService } from 'src/auth/services/auth.service';
 import { AuthDto, ResponseAuthDto } from '../auth/dto/auth.dto';
 import { ProfileDto } from '../auth/dto/profile.dto';
@@ -10,6 +23,8 @@ import { User as UserDecorator } from './users.decorator';
 
 @ApiTags('users')
 @Controller('users')
+@ApiResponse({ status: 400, description: 'Bad request' })
+@ApiResponse({ status: 403, description: 'Forbidden' })
 export class UserController {
   constructor(private readonly authService: AuthService) {}
 
@@ -29,6 +44,7 @@ export class UserController {
     description: 'User has been successfully logged-in',
     type: ResponseAuthDto,
   })
+  @HttpCode(200)
   @Post('sign-in')
   async signIn(@Body() signInDto: AuthDto): Promise<ResponseAuthDto> {
     return this.authService.signIn(signInDto);
@@ -40,6 +56,7 @@ export class UserController {
     description: 'The profile has been successfully got',
     type: ProfileDto,
   })
+  @ApiBearerAuth()
   @Get('profile')
   async getProfile(@UserDecorator() user: User): Promise<ProfileDto> {
     return this.authService.getProfile(user);

@@ -702,6 +702,13 @@
     "@nestjsx/util" "^5.0.0-alpha.3"
     qs "^6.8.0"
 
+"@nestjsx/crud-typeorm@^5.0.0-alpha.3":
+  version "5.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud-typeorm/-/crud-typeorm-5.0.0-alpha.3.tgz#069dedb5cc82fd4749082594b5f6952c160fcd51"
+  integrity sha512-9FN4iBELmhhSoVJj8457kaNGFKhm7IA7zJbLJRGuIb0+12WwCOhY0/bhMg1pWgZ1qUYtkYoELyMiMDroPPtARw==
+  dependencies:
+    "@zmotivat0r/o0" "^1.0.2"
+
 "@nestjsx/crud@^5.0.0-alpha.3":
   version "5.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/@nestjsx/crud/-/crud-5.0.0-alpha.3.tgz#84d494ceb5b10135afe53c62ed2a0e8015522f8b"
@@ -1249,6 +1256,11 @@
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
+
+"@zmotivat0r/o0@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@zmotivat0r/o0/-/o0-1.0.2.tgz#5eb069a631678736234d4c34b07c3a2bae8f8e4b"
+  integrity sha512-wQ/sHqJEtYb+QtgxtWlBpGASFZ2avpoRWbvpginEuy7howZHTZTy3zYMRMaBKok4bZwIGU5bjmzE59+m1IWqKQ==
 
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"
