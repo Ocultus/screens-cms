@@ -40,28 +40,8 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 })
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
-@CrudAuth({
-  property: 'user',
-  filter: (user: User) => ({
-    id: user.id,
-  }),
-})
 @ApiTags('events')
 @Controller('events')
 export class EventContoller implements CrudController<Event> {
   constructor(readonly service: EventService) {}
-
-  /*
-  get base(): CrudController<Event> {
-    return this;
-  }
-
-  @Override()
-  @ApiOkResponse({
-    type: ResponseEventDto,
-  })
-  getOneBase(@ParsedRequest() req: CrudRequest): Promise<ResponseEventDto> {
-    return this.base.getOneBase(req);
-  }
-  */
 }
