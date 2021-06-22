@@ -28,11 +28,11 @@ export class Event {
 
   //Relations
 
-  @ApiPropertyOptional({ type: () => [Screen] })
+  //@ApiPropertyOptional({ type: () => [Screen] })
   @OneToMany(() => Screen, (screen) => screen.event)
   screens?: Screen[];
 
-  @ApiPropertyOptional({ type: () => User })
+  //@ApiPropertyOptional({ type: () => User })
   @ManyToOne(() => User, (user) => user.events, {
     onDelete: 'CASCADE',
     cascade: true,

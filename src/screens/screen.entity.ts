@@ -21,6 +21,9 @@ export class Screen {
   @Column({ type: 'uuid' })
   userId: string;
 
+  @Column({ type: 'uuid' })
+  eventId: string;
+
   //Relations
   @ManyToOne(() => Event, (event) => event.screens, {
     onDelete: 'CASCADE',
