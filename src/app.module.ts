@@ -5,6 +5,7 @@ import { CryptoModule } from './utils/crypto/crypto.module';
 import { EventModule } from './events/events.module';
 import { ScreenModule } from './screens/screens.module';
 import { PlaylistModule } from './playlists/playlists.module';
+import { ContentModule } from './contents/contents.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { PlaylistModule } from './playlists/playlists.module';
     EventModule,
     ScreenModule,
     PlaylistModule,
+    ContentModule,
   ],
   providers: [],
 })
