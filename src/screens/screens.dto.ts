@@ -8,10 +8,6 @@ export class CreateScreenDto {
 
   @IsUUID()
   @ApiProperty({ type: String, format: 'uuid' })
-  userId: string;
-
-  @IsUUID()
-  @ApiProperty({ type: String, format: 'uuid' })
   eventId: string;
 }
 
@@ -20,11 +16,6 @@ export class UpdateScreenDto {
   @IsOptional()
   @ApiPropertyOptional()
   title?: string;
-
-  @IsUUID()
-  @IsOptional()
-  @ApiPropertyOptional({ type: String, format: 'uuid' })
-  userId?: string;
 
   @IsUUID()
   @IsOptional()

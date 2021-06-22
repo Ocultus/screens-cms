@@ -35,7 +35,7 @@ import { ContentService } from './services/contents.service';
 @CrudAuth({
   property: 'user',
   filter: (user: User) => ({
-    id: user.id,
+    userId: user.id,
   }),
 })
 @ApiBearerAuth()

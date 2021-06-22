@@ -38,7 +38,7 @@ import { PlaylistToContentService } from './services/playlist-to-contents.servic
 @CrudAuth({
   property: 'user',
   filter: (user: User) => ({
-    id: user.id,
+    userId: user.id,
   }),
 })
 @ApiBearerAuth()

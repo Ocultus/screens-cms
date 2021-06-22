@@ -8,10 +8,6 @@ export class CreatePlaylistDto {
 
   @IsUUID()
   @ApiProperty({ type: String, format: 'uuid' })
-  userId: string;
-
-  @IsUUID()
-  @ApiProperty({ type: String, format: 'uuid' })
   screenId: string;
 }
 
@@ -19,10 +15,6 @@ export class UpdatePlaylistDto {
   @IsString()
   @ApiPropertyOptional()
   name?: string;
-
-  @IsUUID()
-  @ApiPropertyOptional({ type: String, format: 'uuid' })
-  userId?: string;
 
   @IsUUID()
   @ApiPropertyOptional({ type: String, format: 'uuid' })

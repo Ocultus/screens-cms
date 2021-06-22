@@ -35,7 +35,10 @@ import { ScreenService } from './services/screens.service';
 @CrudAuth({
   property: 'user',
   filter: (user: User) => ({
-    id: user.id,
+    userId: user.id,
+  }),
+  persist: (user: User) => ({
+    userId: user.id,
   }),
 })
 @ApiBearerAuth()

@@ -35,7 +35,10 @@ import { PlaylistService } from './services/playlists.service';
 @CrudAuth({
   property: 'user',
   filter: (user: User) => ({
-    id: user.id,
+    userId: user.id,
+  }),
+  persist: (user: User) => ({
+    userId: user.id,
   }),
 })
 @ApiBearerAuth()
