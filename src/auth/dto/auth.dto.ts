@@ -9,7 +9,7 @@ export class AuthDto {
   @IsNotEmpty()
   @IsString()
   @MinLength(6)
-  @ApiProperty()
+  @ApiProperty({ type: String, format: 'password' })
   password: string;
 }
 

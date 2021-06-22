@@ -2,29 +2,35 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Screen } from 'src/screens/screen.entity';
 import { Event } from '../events/event.entity';
 import { Playlist } from 'src/playlists/playlist.entity';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 const tableName = 'users';
 @Entity({
   name: tableName,
 })
 export class User {
+  @ApiProperty({ type: String, format: 'uuid' })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @ApiProperty({ type: String, format: 'email' })
   @Column({ type: 'varchar', unique: true })
   email: string;
 
+  @ApiProperty({ type: String, format: 'password' })
   @Column({ type: 'varchar' })
   password: string;
 
   //Relations
+  @ApiPropertyOptional({ type: () => [Event] })
   @OneToMany(() => Event, (event) => event.user)
   events?: Event[];
 
+  @ApiPropertyOptional({ type: () => [Screen] })
   @OneToMany(() => Screen, (screen) => screen.user)
   screens?: Screen[];
 
+  @ApiPropertyOptional({ type: () => [Playlist] })
   @OneToMany(() => Playlist, (playlist) => playlist.user)
   playlists?: Playlist;
 }
