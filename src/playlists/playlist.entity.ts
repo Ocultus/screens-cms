@@ -9,21 +9,26 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PlaylistToContent } from 'src/playlist-to-contents/playlist-to-content.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 const tableName = 'playlists';
 @Entity({
   name: tableName,
 })
 export class Playlist {
+  @ApiProperty({ type: String, format: 'uuid' })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @ApiProperty()
   @Column({ type: 'varchar' })
   name: string;
 
+  @ApiProperty({ type: String, format: 'uuid' })
   @Column({ type: 'uuid' })
   userId: string;
 
+  @ApiProperty({ type: String, format: 'uuid' })
   @Column({ type: 'uuid' })
   screenId: string;
 
