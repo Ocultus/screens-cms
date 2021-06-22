@@ -6,6 +6,7 @@ import { EventModule } from './events/events.module';
 import { ScreenModule } from './screens/screens.module';
 import { PlaylistModule } from './playlists/playlists.module';
 import { ContentModule } from './contents/contents.module';
+import { PlaylistToContentModule } from './playlist-to-contents/playlist-to-contents.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ContentModule } from './contents/contents.module';
     ScreenModule,
     PlaylistModule,
     ContentModule,
+    PlaylistToContentModule,
   ],
   providers: [],
 })

@@ -15,6 +15,15 @@ import { PlaylistService } from './services/playlists.service';
     create: CreatePlaylistDto,
     update: UpdatePlaylistDto,
   },
+  routes: {
+    only: [
+      'createOneBase',
+      'deleteOneBase',
+      'getManyBase',
+      'getOneBase',
+      'updateOneBase',
+    ],
+  },
   params: {
     id: {
       field: 'id',

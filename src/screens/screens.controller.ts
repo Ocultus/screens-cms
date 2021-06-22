@@ -15,6 +15,15 @@ import { ScreenService } from './services/screens.service';
     create: CreateScreenDto,
     update: UpdateScreenDto,
   },
+  routes: {
+    only: [
+      'createOneBase',
+      'deleteOneBase',
+      'getManyBase',
+      'getOneBase',
+      'updateOneBase',
+    ],
+  },
   params: {
     id: {
       field: 'id',

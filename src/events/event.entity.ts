@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Screen } from 'src/screens/screen.entity';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 const tableName = 'events';
 @Entity({
@@ -28,11 +28,9 @@ export class Event {
 
   //Relations
 
-  //@ApiPropertyOptional({ type: () => [Screen] })
   @OneToMany(() => Screen, (screen) => screen.event)
   screens?: Screen[];
 
-  //@ApiPropertyOptional({ type: () => User })
   @ManyToOne(() => User, (user) => user.events, {
     onDelete: 'CASCADE',
     cascade: true,

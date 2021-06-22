@@ -3,17 +3,20 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { User } from 'src/users/user.entity';
-import { Content } from './content.entity';
-import { CreateContentDto, UpdateContentDto } from './contents.dto';
-import { ContentService } from './services/contents.service';
+import { PlaylistToContent } from './playlist-to-content.entity';
+import {
+  CreatePlaylistToContentDto,
+  UpdatePlaylistToContentDto,
+} from './playlist-to-contents.dto';
+import { PlaylistToContentService } from './services/playlist-to-contents.service';
 
 @Crud({
   model: {
-    type: Content,
+    type: PlaylistToContent,
   },
   dto: {
-    create: CreateContentDto,
-    update: UpdateContentDto,
+    create: CreatePlaylistToContentDto,
+    update: UpdatePlaylistToContentDto,
   },
   routes: {
     only: [
@@ -40,8 +43,10 @@ import { ContentService } from './services/contents.service';
 })
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
-@ApiTags('contents')
-@Controller('contents')
-export class ContentController implements CrudController<Content> {
-  constructor(readonly service: ContentService) {}
+@ApiTags('playlist-to-contents')
+@Controller('playlist-to-contents')
+export class PlaylistToContentController
+  implements CrudController<PlaylistToContent>
+{
+  constructor(readonly service: PlaylistToContentService) {}
 }
