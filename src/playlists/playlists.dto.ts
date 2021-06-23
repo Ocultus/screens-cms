@@ -20,3 +20,17 @@ export class UpdatePlaylistDto {
   @ApiPropertyOptional({ type: String, format: 'uuid' })
   screenId?: string;
 }
+
+export class ResponsePlaylistDto {
+  @ApiProperty({ type: String, format: 'uuid' })
+  id: string;
+
+  @ApiProperty()
+  name: string;
+
+  @ApiProperty({ type: String, format: 'uuid' })
+  userId: string;
+
+  @ApiProperty({ type: String, format: 'uuid' })
+  screenId: string;
+}

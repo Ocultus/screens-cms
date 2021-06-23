@@ -1,8 +1,7 @@
 import { Controller, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
+import { Crud, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { User } from 'src/users/user.entity';
 import { PlaylistToContent } from './playlist-to-content.entity';
 import {
   CreatePlaylistToContentDto,

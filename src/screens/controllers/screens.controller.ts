@@ -3,10 +3,10 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { User } from 'src/users/user.entity';
-import { CheckScreenOwnerGuard } from './guards/screen-owner.guard';
-import { Screen } from './screen.entity';
-import { CreateScreenDto, UpdateScreenDto } from './screens.dto';
-import { ScreenService } from './services/screens.service';
+import { CheckScreenOwnerGuard } from '../guards/screen-owner.guard';
+import { CreateScreenDto, UpdateScreenDto } from '../screens.dto';
+import { ScreenService } from '../services/screens.service';
+import { Screen } from '../screen.entity';
 
 @Crud({
   model: {
