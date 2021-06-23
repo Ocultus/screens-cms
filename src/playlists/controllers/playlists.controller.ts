@@ -3,10 +3,10 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { User } from 'src/users/user.entity';
-import { CheckPlaylistOwnerGuard } from './guards/playlist-owner.guard';
-import { Playlist } from './playlist.entity';
-import { CreatePlaylistDto, UpdatePlaylistDto } from './playlists.dto';
-import { PlaylistService } from './services/playlists.service';
+import { CheckPlaylistOwnerGuard } from '../guards/playlist-owner.guard';
+import { Playlist } from '../playlist.entity';
+import { CreatePlaylistDto, UpdatePlaylistDto } from '../playlists.dto';
+import { PlaylistService } from '../services/playlists.service';
 
 @Crud({
   model: {

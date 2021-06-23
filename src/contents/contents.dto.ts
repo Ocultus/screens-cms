@@ -23,3 +23,18 @@ export class UpdateContentDto {
   @ApiPropertyOptional({ enum: ContentType, enumName: 'ContentType' })
   contentType?: ContentType;
 }
+
+export class ResponseContentDto {
+  @ApiProperty({ type: String, format: 'uuid' })
+  id: string;
+
+  @ApiProperty({ type: String, format: 'uri' })
+  url: string;
+
+  @ApiProperty({ enum: ContentType, enumName: 'ContentType' })
+  contentType: ContentType;
+}
+
+export class ResponseContentsDto {
+  contents: ResponseContentDto[];
+}
