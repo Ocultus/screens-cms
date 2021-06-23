@@ -3,10 +3,10 @@ import { PlaylistToContent } from 'src/playlist-to-contents/playlist-to-content.
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum ContentType {
-  video,
-  audio,
-  image,
-  html,
+  video = 'video',
+  audio = 'audio',
+  image = 'image',
+  html = 'html',
 }
 
 const tableName = 'contents';
