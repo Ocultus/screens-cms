@@ -2,6 +2,8 @@ import { Controller, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
+import { CheckContentOwnerInterceptor } from 'src/contents/content-owner.interceptor';
+import { CheckPlaylistOwnerInterceptor } from 'src/playlists/playlist-owner.interceptor';
 import { PlaylistToContent } from './playlist-to-content.entity';
 import {
   CreatePlaylistToContentDto,
@@ -18,13 +20,19 @@ import { PlaylistToContentService } from './services/playlist-to-contents.servic
     update: UpdatePlaylistToContentDto,
   },
   routes: {
-    only: [
-      'createOneBase',
-      'deleteOneBase',
-      'getManyBase',
-      'getOneBase',
-      'updateOneBase',
-    ],
+    only: ['createOneBase', 'deleteOneBase', 'updateOneBase'],
+    createOneBase: {
+      interceptors: [
+        CheckPlaylistOwnerInterceptor,
+        CheckContentOwnerInterceptor,
+      ],
+    },
+    updateOneBase: {
+      interceptors: [
+        CheckPlaylistOwnerInterceptor,
+        CheckContentOwnerInterceptor,
+      ],
+    },
   },
   params: {
     id: {

@@ -7,6 +7,7 @@ import { CheckScreenOwnerGuard } from '../guards/screen-owner.guard';
 import { CreateScreenDto, UpdateScreenDto } from '../screens.dto';
 import { ScreenService } from '../services/screens.service';
 import { Screen } from '../screen.entity';
+import { CheckEventOwnerInterceptor } from 'src/events/event-owner.interceptor';
 
 @Crud({
   model: {
@@ -24,10 +25,14 @@ import { Screen } from '../screen.entity';
       'getOneBase',
       'updateOneBase',
     ],
+    createOneBase: {
+      interceptors: [CheckEventOwnerInterceptor],
+    },
     deleteOneBase: {
       decorators: [UseGuards(CheckScreenOwnerGuard)],
     },
     updateOneBase: {
+      interceptors: [CheckEventOwnerInterceptor],
       decorators: [UseGuards(CheckScreenOwnerGuard)],
     },
   },

@@ -1,8 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsOptional, IsString, IsUUID } from 'class-validator';
-import { Playlist } from 'src/playlists/playlist.entity';
-import { User } from 'src/users/user.entity';
-import { Event } from '../events/event.entity';
 
 export class CreateScreenDto {
   @IsString()

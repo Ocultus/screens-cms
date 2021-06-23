@@ -8,5 +8,6 @@ import { ContentService } from './services/contents.service';
   providers: [ContentService],
   imports: [TypeOrmModule.forFeature([ContentRepository])],
   controllers: [ContentController],
+  exports: [ContentService],
 })
 export class ContentModule {}
