@@ -6,6 +6,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateEventDto, UpdateEventDto } from './events.dto';
 import { User } from 'src/users/user.entity';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
+import { CheckEventOwnerGuard } from './guards/event-owner.guard';
 
 @Crud({
   model: {
@@ -19,6 +20,12 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
       'getOneBase',
       'updateOneBase',
     ],
+    deleteOneBase: {
+      decorators: [UseGuards(CheckEventOwnerGuard)],
+    },
+    updateOneBase: {
+      decorators: [UseGuards(CheckEventOwnerGuard)],
+    },
   },
   dto: {
     create: CreateEventDto,
@@ -34,9 +41,6 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 })
 @CrudAuth({
   property: 'user',
-  filter: (user: User) => ({
-    userId: user.id,
-  }),
   persist: (user: User) => ({
     userId: user.id,
   }),

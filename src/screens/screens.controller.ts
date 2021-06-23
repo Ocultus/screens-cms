@@ -3,6 +3,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { User } from 'src/users/user.entity';
+import { CheckScreenOwnerGuard } from './guards/screen-owner.guard';
 import { Screen } from './screen.entity';
 import { CreateScreenDto, UpdateScreenDto } from './screens.dto';
 import { ScreenService } from './services/screens.service';
@@ -23,6 +24,12 @@ import { ScreenService } from './services/screens.service';
       'getOneBase',
       'updateOneBase',
     ],
+    deleteOneBase: {
+      decorators: [UseGuards(CheckScreenOwnerGuard)],
+    },
+    updateOneBase: {
+      decorators: [UseGuards(CheckScreenOwnerGuard)],
+    },
   },
   params: {
     id: {
@@ -34,9 +41,6 @@ import { ScreenService } from './services/screens.service';
 })
 @CrudAuth({
   property: 'user',
-  filter: (user: User) => ({
-    userId: user.id,
-  }),
   persist: (user: User) => ({
     userId: user.id,
   }),

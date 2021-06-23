@@ -35,12 +35,6 @@ import { PlaylistToContentService } from './services/playlist-to-contents.servic
     },
   },
 })
-@CrudAuth({
-  property: 'user',
-  filter: (user: User) => ({
-    userId: user.id,
-  }),
-})
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @ApiTags('playlist-to-contents')

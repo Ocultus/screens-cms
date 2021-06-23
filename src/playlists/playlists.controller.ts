@@ -3,6 +3,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { User } from 'src/users/user.entity';
+import { CheckPlaylistOwnerGuard } from './guards/playlist-owner.guard';
 import { Playlist } from './playlist.entity';
 import { CreatePlaylistDto, UpdatePlaylistDto } from './playlists.dto';
 import { PlaylistService } from './services/playlists.service';
@@ -23,6 +24,12 @@ import { PlaylistService } from './services/playlists.service';
       'getOneBase',
       'updateOneBase',
     ],
+    deleteOneBase: {
+      decorators: [UseGuards(CheckPlaylistOwnerGuard)],
+    },
+    updateOneBase: {
+      decorators: [UseGuards(CheckPlaylistOwnerGuard)],
+    },
   },
   params: {
     id: {
@@ -34,9 +41,6 @@ import { PlaylistService } from './services/playlists.service';
 })
 @CrudAuth({
   property: 'user',
-  filter: (user: User) => ({
-    userId: user.id,
-  }),
   persist: (user: User) => ({
     userId: user.id,
   }),

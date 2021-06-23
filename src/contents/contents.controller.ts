@@ -32,12 +32,6 @@ import { ContentService } from './services/contents.service';
     },
   },
 })
-@CrudAuth({
-  property: 'user',
-  filter: (user: User) => ({
-    userId: user.id,
-  }),
-})
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @ApiTags('contents')
