@@ -1,12 +1,12 @@
 import { Controller, UseGuards } from '@nestjs/common';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
-import { EventService } from './services/events.service';
-import { Event } from './event.entity';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { CreateEventDto, UpdateEventDto } from './events.dto';
 import { User } from 'src/users/user.entity';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { CheckEventOwnerGuard } from './guards/event-owner.guard';
+import { EventService } from '../services/events.service';
+import { CheckEventOwnerGuard } from '../guards/event-owner.guard';
+import { CreateEventDto, UpdateEventDto } from '../events.dto';
+import { Event } from '../event.entity';
 
 @Crud({
   model: {

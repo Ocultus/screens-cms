@@ -1,5 +1,5 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
-import { Event } from './event.entity';
+import { Event } from '../event.entity';
 import {
   ApiBearerAuth,
   ApiOkResponse,
@@ -9,7 +9,7 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { ResponseScreensDto } from 'src/screens/screens.dto';
-import { EventScreenService } from './services/events-screen.service';
+import { EventScreenService } from '../services/events-screens.service';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
