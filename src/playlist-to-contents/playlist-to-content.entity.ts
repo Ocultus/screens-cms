@@ -12,7 +12,7 @@ import {
 
 const tableName = 'playlist-to-contents';
 @Entity({ name: tableName })
-@Unique('UQ_NAMES', ['playlistId', 'contentId'])
+@Unique('UQ_NAMES', ['playlistId', 'contentId', 'position'])
 @Check(`"position" > 0`)
 @Check(`"playTime" > 0`)
 export class PlaylistToContent {

@@ -6,5 +6,7 @@
     "password": "test",
     "database": "test",
     "entities": ["dist/**/*.entity{.ts,.js}"],
+    "seeds": ["seeds/**/*{.ts,.js}"],
+    "factories" : ["factories/**/*{.ts,.js}"],
     "synchronize": true
 }
