@@ -1,6 +1,11 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { ResponseScreenDto, ResponseScreensDto } from 'src/screens/screens.dto';
+import {
+  CreateScreenDto,
+  ResponseScreenDto,
+  ResponseScreensDto,
+} from 'src/screens/screens.dto';
 import { ScreenRepository } from 'src/screens/screens.repository';
+import { User } from 'src/users/user.entity';
 import { Event } from '../event.entity';
 
 export class EventScreenService {
@@ -14,5 +19,17 @@ export class EventScreenService {
       where: { eventId },
     });
     return { screens: foundScreens };
+  }
+
+  async createScreen(
+    createScreenDto: CreateScreenDto,
+    eventId: Event['id'],
+    userId: User['id'],
+  ): Promise<ResponseScreenDto> {
+    return await this.screenRepository.save({
+      ...createScreenDto,
+      eventId,
+      userId,
+    });
   }
 }

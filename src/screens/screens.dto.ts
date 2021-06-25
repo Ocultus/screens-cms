@@ -5,10 +5,6 @@ export class CreateScreenDto {
   @IsString()
   @ApiProperty()
   title: string;
-
-  @IsUUID()
-  @ApiProperty({ type: String, format: 'uuid' })
-  eventId: string;
 }
 
 export class UpdateScreenDto {

@@ -5,10 +5,6 @@ export class CreatePlaylistDto {
   @IsString()
   @ApiProperty()
   name: string;
-
-  @IsUUID()
-  @ApiProperty({ type: String, format: 'uuid' })
-  screenId: string;
 }
 
 export class UpdatePlaylistDto {

@@ -1,4 +1,12 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { Event } from '../event.entity';
 import {
   ApiBearerAuth,
@@ -8,8 +16,14 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { ResponseScreensDto } from 'src/screens/screens.dto';
+import {
+  CreateScreenDto,
+  ResponseScreenDto,
+  ResponseScreensDto,
+} from 'src/screens/screens.dto';
 import { EventScreenService } from '../services/events-screen.service';
+import { User } from 'src/users/users.decorator';
+import { CheckEventExistsInterceptor } from '../events-exists.interceptor';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
@@ -29,5 +43,25 @@ export class EventScreenController {
     @Param('id') eventId: Event['id'],
   ): Promise<ResponseScreensDto> {
     return this.eventScreenService.getScreens(eventId);
+  }
+
+  @UseInterceptors(CheckEventExistsInterceptor)
+  @ApiParam({ name: 'id' })
+  @ApiOperation({ summary: 'Create a single screen' })
+  @ApiOkResponse({
+    description: 'The screens have been successfully found',
+    type: ResponseScreenDto,
+  })
+  @Post(':id/screen')
+  async createScreen(
+    @User('id') userId: string,
+    @Body() createScreenDto: CreateScreenDto,
+    @Param('id') eventId: Event['id'],
+  ) {
+    return this.eventScreenService.createScreen(
+      createScreenDto,
+      eventId,
+      userId,
+    );
   }
 }

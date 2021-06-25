@@ -18,16 +18,7 @@ import { PlaylistService } from '../services/playlists.service';
     update: UpdatePlaylistDto,
   },
   routes: {
-    only: [
-      'createOneBase',
-      'deleteOneBase',
-      'getManyBase',
-      'getOneBase',
-      'updateOneBase',
-    ],
-    createOneBase: {
-      interceptors: [CheckScreenExistsInterceptor],
-    },
+    only: ['deleteOneBase', 'getManyBase', 'getOneBase', 'updateOneBase'],
     deleteOneBase: {
       decorators: [UseGuards(CheckPlaylistOwnerGuard)],
     },

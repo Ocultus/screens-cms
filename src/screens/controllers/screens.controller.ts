@@ -18,16 +18,7 @@ import { CheckEventExistsInterceptor } from 'src/events/events-exists.intercepto
     update: UpdateScreenDto,
   },
   routes: {
-    only: [
-      'createOneBase',
-      'deleteOneBase',
-      'getManyBase',
-      'getOneBase',
-      'updateOneBase',
-    ],
-    createOneBase: {
-      interceptors: [CheckEventExistsInterceptor],
-    },
+    only: ['deleteOneBase', 'getManyBase', 'getOneBase', 'updateOneBase'],
     deleteOneBase: {
       decorators: [UseGuards(CheckScreenOwnerGuard)],
     },

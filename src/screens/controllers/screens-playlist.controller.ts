@@ -1,4 +1,12 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOkResponse,
@@ -9,7 +17,12 @@ import {
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { ScreenPlaylistService } from '../services/screens-playlist.service';
 import { Screen } from '../screen.entity';
-import { ResponsePlaylistDto } from 'src/playlists/playlists.dto';
+import {
+  CreatePlaylistDto,
+  ResponsePlaylistDto,
+} from 'src/playlists/playlists.dto';
+import { CheckScreenExistsInterceptor } from '../screens-exists.interceptor';
+import { User } from 'src/users/users.decorator';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
@@ -29,5 +42,25 @@ export class ScreenPlaylistController {
     @Param('id') screenId: Screen['id'],
   ): Promise<ResponsePlaylistDto> {
     return this.screenPlaylistService.getPlaylist(screenId);
+  }
+
+  @ApiParam({ name: 'id' })
+  @Post(':id/playlist')
+  @ApiOperation({ summary: 'Create a single playlist' })
+  @ApiOkResponse({
+    description: 'The screens have been successfully found',
+    type: ResponsePlaylistDto,
+  })
+  @UseInterceptors(CheckScreenExistsInterceptor)
+  async createPlaylist(
+    @User('id') userId: string,
+    @Body() createPlaylistDto: CreatePlaylistDto,
+    @Param('id') screenId: Screen['id'],
+  ): Promise<ResponsePlaylistDto> {
+    return this.screenPlaylistService.createPlaylist(
+      userId,
+      createPlaylistDto,
+      screenId,
+    );
   }
 }

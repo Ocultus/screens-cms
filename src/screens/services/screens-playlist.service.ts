@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ResponsePlaylistDto } from 'src/playlists/playlists.dto';
+import {
+  CreatePlaylistDto,
+  ResponsePlaylistDto,
+} from 'src/playlists/playlists.dto';
 import { PlaylistRepository } from 'src/playlists/playlists.repository';
+import { User } from 'src/users/user.entity';
 import { Screen } from '../screen.entity';
 
 @Injectable()
@@ -13,5 +17,16 @@ export class ScreenPlaylistService {
 
   async getPlaylist(screenId: Screen['id']): Promise<ResponsePlaylistDto> {
     return this.playlistRepository.findOne({ where: { screenId } });
+  }
+  async createPlaylist(
+    userId: User['id'],
+    createPlaylistDto: CreatePlaylistDto,
+    screenId: Screen['id'],
+  ): Promise<ResponsePlaylistDto> {
+    return this.playlistRepository.save({
+      ...createPlaylistDto,
+      screenId,
+      userId,
+    });
   }
 }
