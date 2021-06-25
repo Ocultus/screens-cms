@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { EventService } from './services/events.service';
 
 @Injectable()
-export class CheckEventOwnerInterceptor implements NestInterceptor {
+export class CheckEventExistsInterceptor implements NestInterceptor {
   constructor(private eventService: EventService) {}
   async intercept(
     context: ExecutionContext,

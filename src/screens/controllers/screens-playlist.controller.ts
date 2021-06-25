@@ -7,7 +7,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { ScreenPlaylistService } from '../services/screen-playlist.service';
+import { ScreenPlaylistService } from '../services/screens-playlist.service';
 import { Screen } from '../screen.entity';
 import { ResponsePlaylistDto } from 'src/playlists/playlists.dto';
 

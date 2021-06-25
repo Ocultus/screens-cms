@@ -9,7 +9,7 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { ResponseScreensDto } from 'src/screens/screens.dto';
-import { EventScreenService } from '../services/events-screens.service';
+import { EventScreenService } from '../services/events-screen.service';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)

@@ -1,10 +1,10 @@
-import { Controller, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { User } from 'src/users/user.entity';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { EventService } from '../services/events.service';
-import { CheckEventOwnerGuard } from '../guards/event-owner.guard';
+import { CheckEventOwnerGuard } from '../guards/events-owner.guard';
 import { CreateEventDto, UpdateEventDto } from '../events.dto';
 import { Event } from '../event.entity';
 

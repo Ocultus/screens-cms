@@ -3,11 +3,11 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { User } from 'src/users/user.entity';
-import { CheckScreenOwnerGuard } from '../guards/screen-owner.guard';
+import { CheckScreenOwnerGuard } from '../guards/screens-owner.guard';
 import { CreateScreenDto, UpdateScreenDto } from '../screens.dto';
 import { ScreenService } from '../services/screens.service';
 import { Screen } from '../screen.entity';
-import { CheckEventOwnerInterceptor } from 'src/events/event-owner.interceptor';
+import { CheckEventExistsInterceptor } from 'src/events/events-exists.interceptor';
 
 @Crud({
   model: {
@@ -26,13 +26,13 @@ import { CheckEventOwnerInterceptor } from 'src/events/event-owner.interceptor';
       'updateOneBase',
     ],
     createOneBase: {
-      interceptors: [CheckEventOwnerInterceptor],
+      interceptors: [CheckEventExistsInterceptor],
     },
     deleteOneBase: {
       decorators: [UseGuards(CheckScreenOwnerGuard)],
     },
     updateOneBase: {
-      interceptors: [CheckEventOwnerInterceptor],
+      interceptors: [CheckEventExistsInterceptor],
       decorators: [UseGuards(CheckScreenOwnerGuard)],
     },
   },

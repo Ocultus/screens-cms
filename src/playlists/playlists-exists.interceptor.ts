@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { PlaylistService } from './services/playlists.service';
 
 @Injectable()
-export class CheckPlaylistOwnerInterceptor implements NestInterceptor {
+export class CheckPlaylistExistsInterceptor implements NestInterceptor {
   constructor(private readonly playlistService: PlaylistService) {}
   async intercept(
     context: ExecutionContext,

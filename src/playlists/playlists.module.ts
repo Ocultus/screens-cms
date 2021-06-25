@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlaylistToContentRepository } from 'src/playlist-to-contents/playlist-to-contents.repository';
 import { ScreenModule } from 'src/screens/screens.module';
-import { PlaylistContentController } from './controllers/playlist-contents.controller';
+import { PlaylistContentController } from './controllers/playlists-content.controller';
 import { PlaylistController } from './controllers/playlists.controller';
 import { PlaylistRepository } from './playlists.repository';
-import { PlaylistContentService } from './services/playlist-contents.service';
+import { PlaylistContentService } from './services/playlists-content.service';
 import { PlaylistService } from './services/playlists.service';
 
 @Module({

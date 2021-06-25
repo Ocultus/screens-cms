@@ -9,7 +9,7 @@ import {
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { ResponseContentsDto } from 'src/contents/contents.dto';
 import { Playlist } from '../playlist.entity';
-import { PlaylistContentService } from '../services/playlist-contents.service';
+import { PlaylistContentService } from '../services/playlists-content.service';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
