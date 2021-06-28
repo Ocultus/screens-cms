@@ -4,7 +4,7 @@ import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { User } from 'src/users/user.entity';
 import { CheckScreenOwnerGuard } from '../guards/screens-owner.guard';
-import { CreateScreenDto, UpdateScreenDto } from '../screens.dto';
+import { CreateScreenDto, ResponseScreenDto, ResponseScreensDto, UpdateScreenDto } from '../screens.dto';
 import { ScreenService } from '../services/screens.service';
 import { Screen } from '../screen.entity';
 import { CheckEventExistsInterceptor } from 'src/events/events-exists.interceptor';
@@ -16,6 +16,11 @@ import { CheckEventExistsInterceptor } from 'src/events/events-exists.intercepto
   dto: {
     create: CreateScreenDto,
     update: UpdateScreenDto,
+  },
+  serialize: {
+    get: ResponseScreenDto,
+    getMany: ResponseScreensDto,
+    update: ResponseScreenDto,
   },
   routes: {
     only: ['deleteOneBase', 'getManyBase', 'getOneBase', 'updateOneBase'],

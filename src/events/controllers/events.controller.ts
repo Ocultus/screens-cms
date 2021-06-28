@@ -5,7 +5,12 @@ import { User } from 'src/users/user.entity';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { EventService } from '../services/events.service';
 import { CheckEventOwnerGuard } from '../guards/events-owner.guard';
-import { CreateEventDto, UpdateEventDto } from '../events.dto';
+import {
+  CreateEventDto,
+  ResponseEventDto,
+  ResponseEventsDto,
+  UpdateEventDto,
+} from '../events.dto';
 import { Event } from '../event.entity';
 
 @Crud({
@@ -30,6 +35,12 @@ import { Event } from '../event.entity';
   dto: {
     create: CreateEventDto,
     update: UpdateEventDto,
+  },
+  serialize: {
+    create: ResponseEventDto,
+    update: ResponseEventDto,
+    get: ResponseEventDto,
+    getMany: ResponseEventsDto,
   },
   params: {
     id: {

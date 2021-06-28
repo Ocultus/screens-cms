@@ -6,7 +6,12 @@ import { CheckScreenExistsInterceptor } from 'src/screens/screens-exists.interce
 import { User } from 'src/users/user.entity';
 import { CheckPlaylistOwnerGuard } from '../guards/playlists-owner.guard';
 import { Playlist } from '../playlist.entity';
-import { CreatePlaylistDto, UpdatePlaylistDto } from '../playlists.dto';
+import {
+  CreatePlaylistDto,
+  ResponsePlaylistDto,
+  ResponsePlaylistsDto,
+  UpdatePlaylistDto,
+} from '../playlists.dto';
 import { PlaylistService } from '../services/playlists.service';
 
 @Crud({
@@ -16,6 +21,11 @@ import { PlaylistService } from '../services/playlists.service';
   dto: {
     create: CreatePlaylistDto,
     update: UpdatePlaylistDto,
+  },
+  serialize: {
+    update: ResponsePlaylistsDto,
+    getMany: ResponsePlaylistsDto,
+    get: ResponsePlaylistDto,
   },
   routes: {
     only: ['deleteOneBase', 'getManyBase', 'getOneBase', 'updateOneBase'],

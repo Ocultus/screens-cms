@@ -13,3 +13,19 @@ export class UpdateEventDto {
   @ApiPropertyOptional()
   name?: string;
 }
+
+export class ResponseEventDto {
+  @ApiProperty({ type: String, format: 'uuid' })
+  id: string;
+
+  @ApiProperty()
+  name: string;
+
+  @ApiProperty({ type: String, format: 'uuid' })
+  userId: string;
+}
+
+export class ResponseEventsDto {
+  @ApiProperty({ type: () => [ResponseEventDto] })
+  events: ResponseEventDto[];
+}

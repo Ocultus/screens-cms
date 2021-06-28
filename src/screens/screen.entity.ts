@@ -13,19 +13,15 @@ import {
 const tableName = 'screens';
 @Entity({ name: tableName })
 export class Screen {
-  @ApiProperty({ type: String, format: 'uuid' })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty()
   @Column({ type: 'varchar' })
   title: string;
 
-  @ApiProperty({ type: String, format: 'uuid' })
   @Column({ type: 'uuid' })
   userId: string;
 
-  @ApiProperty({ type: String, format: 'uuid' })
   @Column({ type: 'uuid' })
   eventId: string;
 

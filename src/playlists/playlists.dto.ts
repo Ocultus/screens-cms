@@ -30,3 +30,8 @@ export class ResponsePlaylistDto {
   @ApiProperty({ type: String, format: 'uuid' })
   screenId: string;
 }
+
+export class ResponsePlaylistsDto {
+  @ApiProperty({ type: () => [ResponsePlaylistDto] })
+  playlists: ResponsePlaylistDto[];
+}

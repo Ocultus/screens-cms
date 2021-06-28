@@ -13,15 +13,12 @@ const tableName = 'contents';
 @Entity({ name: tableName })
 export class Content {
   @PrimaryGeneratedColumn('uuid')
-  @ApiProperty({ type: String, format: 'uuid' })
   id: string;
 
   @Column({ type: 'text' })
-  @ApiProperty({ type: String, format: 'uri' })
   url: string;
 
   @Column({ type: 'enum', enum: ContentType })
-  @ApiProperty({ enum: ContentType, enumName: 'ContentType' })
   contentType: ContentType;
 
   //Relations
@@ -30,5 +27,5 @@ export class Content {
     () => PlaylistToContent,
     (playlistToContent) => playlistToContent.content,
   )
-  playlistToContent?: PlaylistToContent[];
+  playlistToContents?: PlaylistToContent[];
 }

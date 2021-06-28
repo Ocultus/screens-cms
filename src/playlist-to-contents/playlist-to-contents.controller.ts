@@ -7,6 +7,7 @@ import { CheckPlaylistExistsInterceptor } from 'src/playlists/playlists-exists.i
 import { PlaylistToContent } from './playlist-to-content.entity';
 import {
   CreatePlaylistToContentDto,
+  ResponsePlaylistToContentDto,
   UpdatePlaylistToContentDto,
 } from './playlist-to-contents.dto';
 import { PlaylistToContentService } from './services/playlist-to-contents.service';
@@ -19,8 +20,13 @@ import { PlaylistToContentService } from './services/playlist-to-contents.servic
     create: CreatePlaylistToContentDto,
     update: UpdatePlaylistToContentDto,
   },
+  serialize: {
+    create: ResponsePlaylistToContentDto,
+    update: ResponsePlaylistToContentDto,
+    get: ResponsePlaylistToContentDto,
+  },
   routes: {
-    only: ['createOneBase', 'deleteOneBase', 'updateOneBase'],
+    only: ['getOneBase', 'createOneBase', 'deleteOneBase', 'updateOneBase'],
     createOneBase: {
       interceptors: [
         CheckPlaylistExistsInterceptor,

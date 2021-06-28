@@ -16,19 +16,15 @@ const tableName = 'playlists';
   name: tableName,
 })
 export class Playlist {
-  @ApiProperty({ type: String, format: 'uuid' })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty()
   @Column({ type: 'varchar' })
   name: string;
 
-  @ApiProperty({ type: String, format: 'uuid' })
   @Column({ type: 'uuid' })
   userId: string;
 
-  @ApiProperty({ type: String, format: 'uuid' })
   @Column({ type: 'uuid' })
   screenId: string;
 
@@ -49,5 +45,5 @@ export class Playlist {
     () => PlaylistToContent,
     (playlistToContent) => playlistToContent.playlist,
   )
-  playlistToContent?: PlaylistToContent[];
+  playlistToContents?: PlaylistToContent[];
 }

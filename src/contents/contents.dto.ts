@@ -36,5 +36,6 @@ export class ResponseContentDto {
 }
 
 export class ResponseContentsDto {
+  @ApiProperty({ type: () => [ResponseContentDto] })
   contents: ResponseContentDto[];
 }
