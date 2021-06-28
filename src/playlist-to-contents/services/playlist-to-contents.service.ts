@@ -1,11 +1,11 @@
-import {
-  BadRequestException,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CrudRequest, Override } from '@nestjsx/crud';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
-import { PlaylistToContent } from '../playlist-to-content.entity';
+import { QueryFailedError } from 'typeorm';
+import {
+  PlaylistToContent,
+  positionUniqueConstraint,
+} from '../playlist-to-content.entity';
 import {
   CreatePlaylistToContentDto,
   ResponsePlaylistToContentDto,
@@ -29,12 +29,10 @@ export class PlaylistToContentService extends TypeOrmCrudService<PlaylistToConte
     try {
       return await super.createOne(req, dto);
     } catch (error) {
-      if (error && error.code === PG_UNIQUE_CONSTRAINT_VIOLATION) {
+      if (error && error.constraint === positionUniqueConstraint) {
         throw new BadRequestException(
           'Position/Playlist-Content pair incorrect',
         );
-      } else {
-        throw new InternalServerErrorException('');
       }
     }
   }
@@ -47,12 +45,10 @@ export class PlaylistToContentService extends TypeOrmCrudService<PlaylistToConte
     try {
       return await super.updateOne(req, dto);
     } catch (error) {
-      if (error && error.code === PG_UNIQUE_CONSTRAINT_VIOLATION) {
+      if (error && error.constraint === positionUniqueConstraint) {
         throw new BadRequestException(
           'Position/Playlist-Content pair incorrect',
         );
-      } else {
-        throw new InternalServerErrorException('');
       }
     }
   }

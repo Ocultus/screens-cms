@@ -10,8 +10,9 @@ import {
 } from 'typeorm';
 
 const tableName = 'playlist-to-contents';
+export const positionUniqueConstraint = 'UQ_POSITION';
 @Entity({ name: tableName })
-@Unique('UQ_NAMES', ['playlistId', 'position'])
+@Unique(positionUniqueConstraint, ['playlistId', 'position'])
 @Check(`"position" > 0`)
 @Check(`"playTime" > 0`)
 export class PlaylistToContent {
