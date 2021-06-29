@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { File } from 'src/files/file.entity';
 import { PlaylistToContent } from 'src/playlist-to-contents/playlist-to-content.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -15,9 +15,6 @@ export class Content {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'text' })
-  url: string;
-
   @Column({ type: 'enum', enum: ContentType })
   contentType: ContentType;
 
@@ -28,4 +25,7 @@ export class Content {
     (playlistToContent) => playlistToContent.content,
   )
   playlistToContents?: PlaylistToContent[];
+
+  @OneToMany(() => File, (file) => file.content)
+  files?: File[];
 }
