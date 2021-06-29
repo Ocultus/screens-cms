@@ -2,9 +2,14 @@ import { Controller, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { Content } from './content.entity';
-import { CreateContentDto, ResponseContentDto, ResponseContentsDto, UpdateContentDto } from './contents.dto';
-import { ContentService } from './services/contents.service';
+import { Content } from '../content.entity';
+import {
+  CreateContentDto,
+  ResponseContentDto,
+  ResponseContentsDto,
+  UpdateContentDto,
+} from '../contents.dto';
+import { ContentService } from '../services/contents.service';
 
 @Crud({
   model: {
