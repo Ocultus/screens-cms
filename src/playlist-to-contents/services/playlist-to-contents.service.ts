@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CrudRequest, Override } from '@nestjsx/crud';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
-import { QueryFailedError } from 'typeorm';
 import {
   PlaylistToContent,
   positionUniqueConstraint,
@@ -12,8 +11,6 @@ import {
   UpdatePlaylistToContentDto,
 } from '../playlist-to-contents.dto';
 import { PlaylistToContentRepository } from '../playlist-to-contents.repository';
-
-const PG_UNIQUE_CONSTRAINT_VIOLATION = '23505';
 
 @Injectable()
 export class PlaylistToContentService extends TypeOrmCrudService<PlaylistToContent> {

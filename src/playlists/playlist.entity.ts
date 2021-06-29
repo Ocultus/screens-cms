@@ -9,7 +9,6 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PlaylistToContent } from 'src/playlist-to-contents/playlist-to-content.entity';
-import { ApiProperty } from '@nestjs/swagger';
 
 const tableName = 'playlists';
 @Entity({
