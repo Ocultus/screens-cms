@@ -6,6 +6,10 @@ import { v4 as uuid } from 'uuid';
 import { S3 } from 'aws-sdk';
 import { AWS_BUCKET_NAME } from 'src/config/configuration';
 import { S3ResponseDto } from 'src/files/types/s3-response';
+import {
+  BadRequestException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 
 export class ContentFileSerivce {
   constructor(
@@ -19,6 +23,9 @@ export class ContentFileSerivce {
     fileName: string,
     contentId: Content['id'],
   ): Promise<ResponseFileDto> {
+    if (!fileName || !fileBuffer) {
+      throw new BadRequestException('File not attach');
+    }
     const s3Response = await this.uploadFile(fileBuffer, fileName);
     return await this.repository.save({
       ...createFileDto,
@@ -31,15 +38,18 @@ export class ContentFileSerivce {
     fileBuffer: Buffer,
     filename: string,
   ): Promise<S3ResponseDto> {
-    const s3 = new S3();
-    const uploadResult = await s3
-      .upload({
-        Bucket: AWS_BUCKET_NAME,
-        Body: fileBuffer,
-        Key: `${uuid()}-${filename}`,
-      })
-      .promise();
-
-    return { key: uploadResult.Key, url: uploadResult.Location };
+    try {
+      const s3 = new S3();
+      const uploadResult = await s3
+        .upload({
+          Bucket: AWS_BUCKET_NAME,
+          Body: fileBuffer,
+          Key: `${uuid()}-${filename}`,
+        })
+        .promise();
+      return { key: uploadResult.Key, url: uploadResult.Location };
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
   }
 }

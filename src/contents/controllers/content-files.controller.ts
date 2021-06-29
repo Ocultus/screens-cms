@@ -34,7 +34,7 @@ export class ContentFileController {
   @ApiParam({ name: 'id' })
   @ApiOperation({ summary: 'Create a single file' })
   @ApiOkResponse({
-    description: 'The screens have been successfully found',
+    description: 'The file have been successfully created',
     type: ResponseFileDto,
   })
   @ApiConsumes('multipart/form-data')
@@ -60,8 +60,8 @@ export class ContentFileController {
   ): Promise<ResponseFileDto> {
     return this.contentFileService.create(
       createFileDto,
-      file.buffer,
-      file.originalname,
+      file?.buffer,
+      file?.originalname,
       contentId,
     );
   }

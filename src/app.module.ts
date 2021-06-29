@@ -7,6 +7,7 @@ import { ScreenModule } from './screens/screens.module';
 import { PlaylistModule } from './playlists/playlists.module';
 import { ContentModule } from './contents/contents.module';
 import { PlaylistToContentModule } from './playlist-to-contents/playlist-to-contents.module';
+import { FileModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PlaylistToContentModule } from './playlist-to-contents/playlist-to-cont
     PlaylistModule,
     ContentModule,
     PlaylistToContentModule,
+    FileModule,
   ],
   providers: [],
 })
