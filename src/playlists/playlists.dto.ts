@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsUUID } from 'class-validator';
+import { IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreatePlaylistDto {
   @IsString()
@@ -8,11 +8,13 @@ export class CreatePlaylistDto {
 }
 
 export class UpdatePlaylistDto {
+  @IsOptional()
   @IsString()
   @ApiPropertyOptional()
   name?: string;
 
   @IsUUID()
+  @IsOptional()
   @ApiPropertyOptional({ type: String, format: 'uuid' })
   screenId?: string;
 }

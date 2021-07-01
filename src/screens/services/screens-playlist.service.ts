@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { screenIdUniqueConstraint } from 'src/playlists/playlist.entity';
 import {
   CreatePlaylistDto,
   ResponsePlaylistDto,
@@ -23,10 +24,17 @@ export class ScreenPlaylistService {
     createPlaylistDto: CreatePlaylistDto,
     screenId: Screen['id'],
   ): Promise<ResponsePlaylistDto> {
-    return this.playlistRepository.save({
-      ...createPlaylistDto,
-      screenId,
-      userId,
-    });
+    try {
+      return await this.playlistRepository.save({
+        ...createPlaylistDto,
+        screenId,
+        userId,
+      });
+    } catch (error) {
+      if (error && error.constraint === screenIdUniqueConstraint) {
+        throw new BadRequestException();
+      }
+      throw new BadRequestException();
+    }
   }
 }
