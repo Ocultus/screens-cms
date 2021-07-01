@@ -16,7 +16,7 @@ export class CheckEventExistsInterceptor implements NestInterceptor {
     next: CallHandler<any>,
   ): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();
-    const eventId = request.body.eventId || request.params.id;
+    const eventId = request.params.id;
     const foundEvent = await this.eventService.findOne(eventId);
     if (!foundEvent) {
       throw new NotFoundException('Event don`t exists');

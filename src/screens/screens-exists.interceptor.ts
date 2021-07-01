@@ -16,8 +16,7 @@ export class CheckScreenExistsInterceptor implements NestInterceptor {
     next: CallHandler<any>,
   ): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();
-    console.log(request);
-    const screenId = request.body.screenId || request.params.id;
+    const screenId = request.params.id;
     const foundScreen = await this.eventService.findOne(screenId);
     if (!foundScreen) {
       throw new NotFoundException('Screen don`t exists');
