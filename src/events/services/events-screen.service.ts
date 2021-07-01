@@ -9,7 +9,10 @@ import { User } from 'src/users/user.entity';
 import { Event } from '../event.entity';
 
 export class EventScreenService {
-  constructor(private readonly screenRepository: ScreenRepository) {}
+  constructor(
+    @InjectRepository(ScreenRepository)
+    private readonly screenRepository: ScreenRepository,
+  ) {}
 
   async getScreens(eventId: Event['id']): Promise<ResponseScreensDto> {
     const foundScreens: ResponseScreenDto[] = await this.screenRepository.find({

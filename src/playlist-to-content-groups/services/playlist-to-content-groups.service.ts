@@ -3,9 +3,11 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CrudRequest, Override } from '@nestjsx/crud';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { ContentGroupRepository } from 'src/contentGroups/content-groups.repository';
+import { ContentRepository } from 'src/contents/contents.repository';
 import { PlaylistRepository } from 'src/playlists/playlists.repository';
 import {
   PlaylistToContentGroup,
@@ -22,7 +24,9 @@ import { PlaylistToContentGroupRepository } from '../playlist-to-contents-groups
 export class PlaylistToContentGroupService extends TypeOrmCrudService<PlaylistToContentGroup> {
   constructor(
     readonly repository: PlaylistToContentGroupRepository,
+    @InjectRepository(PlaylistRepository)
     private readonly playlistRepository: PlaylistRepository,
+    @InjectRepository(ContentGroupRepository)
     private readonly contentGroupRepository: ContentGroupRepository,
   ) {
     super(repository);

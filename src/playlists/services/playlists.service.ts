@@ -3,6 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CrudRequest, Override } from '@nestjsx/crud';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { ScreenRepository } from 'src/screens/screens.repository';
@@ -14,6 +15,7 @@ import { PlaylistRepository } from '../playlists.repository';
 export class PlaylistService extends TypeOrmCrudService<Playlist> {
   constructor(
     readonly repository: PlaylistRepository,
+    @InjectRepository(ScreenRepository)
     private readonly screenRepository: ScreenRepository,
   ) {
     super(repository);

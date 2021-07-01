@@ -1,9 +1,11 @@
+import { InjectRepository } from '@nestjs/typeorm';
 import { ResponseContentGroupsDto } from 'src/contentGroups/content-groups.dto';
 import { PlaylistToContentGroupRepository } from 'src/playlist-to-content-groups/playlist-to-contents-groups.repository';
 import { Playlist } from '../playlist.entity';
 
 export class PlaylistContentGroupService {
   constructor(
+    @InjectRepository(PlaylistToContentGroupRepository)
     private readonly playlistToContentRepository: PlaylistToContentGroupRepository,
   ) {}
 

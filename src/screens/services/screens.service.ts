@@ -3,6 +3,7 @@ import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { ScreenRepository } from '../screens.repository';
 import { Screen } from '../screen.entity';
 import { CrudRequest, Override } from '@nestjsx/crud';
+import { InjectRepository } from '@nestjs/typeorm';
 import { EventRepository } from 'src/events/events.repository';
 import { UpdateScreenDto } from '../screens.dto';
 
@@ -10,6 +11,7 @@ import { UpdateScreenDto } from '../screens.dto';
 export class ScreenService extends TypeOrmCrudService<Screen> {
   constructor(
     readonly repository: ScreenRepository,
+    @InjectRepository(EventRepository)
     private readonly eventRepository: EventRepository,
   ) {
     super(repository);
