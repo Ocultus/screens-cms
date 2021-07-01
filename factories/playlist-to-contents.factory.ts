@@ -1,8 +1,8 @@
 import * as faker from 'faker';
+import { PlaylistToContentGroup } from 'src/playlist-to-content-groups/playlist-to-content-group.entity';
 import { define } from 'typeorm-seeding';
-import { PlaylistToContent } from 'src/playlist-to-contents/playlist-to-content.entity';
-define(PlaylistToContent, () => {
-  const playlistToContent = new PlaylistToContent();
+define(PlaylistToContentGroup, () => {
+  const playlistToContent = new PlaylistToContentGroup();
   playlistToContent.id = faker.datatype.uuid();
   playlistToContent.playTime = faker.datatype.number({ min: 1, max: 100 });
   return playlistToContent;

@@ -1,28 +1,28 @@
-import { ContentRepository } from '../src/contents/contents.repository';
-import { PlaylistToContent } from '../src/playlist-to-contents/playlist-to-content.entity';
-import { PlaylistToContentRepository } from '../src/playlist-to-contents/playlist-to-contents.repository';
-import { PlaylistRepository } from '../src/playlists/playlists.repository';
 import { Connection } from 'typeorm';
 import { Factory, Seeder } from 'typeorm-seeding';
-import { Content } from 'src/contents/content.entity';
 import { Playlist } from 'src/playlists/playlist.entity';
+import { PlaylistRepository } from 'src/playlists/playlists.repository';
+import { ContentGroup } from 'src/contentGroups/content-group.entity';
+import { ContentGroupRepository } from 'src/contentGroups/content-groups.repository';
+import { PlaylistToContentGroup } from 'src/playlist-to-content-groups/playlist-to-content-group.entity';
+import { PlaylistToContentGroupRepository } from 'src/playlist-to-content-groups/playlist-to-contents-groups.repository';
 
 const entityCount = 100;
 
-export class CreatePlaylistToContent implements Seeder {
+export class CreatePlaylistToContentGroup implements Seeder {
   async run(factory: Factory, connection: Connection): Promise<void> {
     const playlists: Playlist[] = await connection
       .getCustomRepository(PlaylistRepository)
       .find({ take: entityCount });
 
-    const contents: Content[] = await connection
-      .getCustomRepository(ContentRepository)
+    const contentGroups = await connection
+      .getCustomRepository(ContentGroupRepository)
       .find({ take: entityCount });
 
     const map: Map<string, number> = new Map();
     const playlistToContentMap: Map<number, number> = new Map();
 
-    const playlistToContents = await factory(PlaylistToContent)()
+    const playlistToContents = await factory(PlaylistToContentGroup)()
       .map(async (playlistToContent) => {
         let randomPlaylistIndex = Math.floor(Math.random() * entityCount);
         let randomContentIndex = Math.floor(Math.random() * entityCount);
@@ -38,7 +38,7 @@ export class CreatePlaylistToContent implements Seeder {
 
         const playlistId = playlists[randomPlaylistIndex].id;
 
-        playlistToContent.contentId = contents[randomContentIndex].id;
+        playlistToContent.contentGroupId = contentGroups[randomContentIndex].id;
         playlistToContent.playlistId = playlistId;
 
         const oldPosition = map.get(playlistId);
@@ -53,7 +53,7 @@ export class CreatePlaylistToContent implements Seeder {
       })
       .makeMany(entityCount);
     await connection
-      .getCustomRepository(PlaylistToContentRepository)
+      .getCustomRepository(PlaylistToContentGroupRepository)
       .save(playlistToContents);
   }
 }
