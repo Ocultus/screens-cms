@@ -4,10 +4,14 @@ import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { User } from 'src/users/user.entity';
 import { CheckScreenOwnerGuard } from '../guards/screens-owner.guard';
-import { CreateScreenDto, ResponseScreenDto, ResponseScreensDto, UpdateScreenDto } from '../screens.dto';
+import {
+  CreateScreenDto,
+  ResponseScreenDto,
+  ResponseScreensDto,
+  UpdateScreenDto,
+} from '../screens.dto';
 import { ScreenService } from '../services/screens.service';
 import { Screen } from '../screen.entity';
-import { CheckEventExistsInterceptor } from 'src/events/events-exists.interceptor';
 
 @Crud({
   model: {
@@ -28,7 +32,6 @@ import { CheckEventExistsInterceptor } from 'src/events/events-exists.intercepto
       decorators: [UseGuards(CheckScreenOwnerGuard)],
     },
     updateOneBase: {
-      interceptors: [CheckEventExistsInterceptor],
       decorators: [UseGuards(CheckScreenOwnerGuard)],
     },
   },

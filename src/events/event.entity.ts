@@ -19,7 +19,7 @@ export class Event {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'uuid' })
+  @Column({ type: 'varchar' })
   userId: string;
 
   //Relations

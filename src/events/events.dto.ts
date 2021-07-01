@@ -21,7 +21,7 @@ export class ResponseEventDto {
   @ApiProperty()
   name: string;
 
-  @ApiProperty({ type: String, format: 'uuid' })
+  @ApiProperty()
   userId: string;
 }
 

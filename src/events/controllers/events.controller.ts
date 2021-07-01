@@ -1,7 +1,6 @@
 import { Controller, UseGuards } from '@nestjs/common';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { User } from 'src/users/user.entity';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { EventService } from '../services/events.service';
 import { CheckEventOwnerGuard } from '../guards/events-owner.guard';
@@ -12,6 +11,7 @@ import {
   UpdateEventDto,
 } from '../events.dto';
 import { Event } from '../event.entity';
+import { JwtPayload } from 'src/auth/auth-types';
 
 @Crud({
   model: {
@@ -52,8 +52,8 @@ import { Event } from '../event.entity';
 })
 @CrudAuth({
   property: 'user',
-  persist: (user: User) => ({
-    userId: user.id,
+  persist: (user: JwtPayload) => ({
+    userId: user.sub,
   }),
 })
 @ApiBearerAuth()

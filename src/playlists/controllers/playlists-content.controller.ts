@@ -7,29 +7,29 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { ResponseContentsDto } from 'src/contents/contents.dto';
+import { ResponseContentGroupsDto } from 'src/contentGroups/content-groups.dto';
 import { Playlist } from '../playlist.entity';
-import { PlaylistContentService } from '../services/playlists-content.service';
+import { PlaylistContentGroupService } from '../services/playlist-content-groups.service';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @ApiTags('playlists')
 @Controller('playlists')
-export class PlaylistContentController {
+export class PlaylistContentGroupController {
   constructor(
-    private readonly playlistContentService: PlaylistContentService,
+    private readonly playlistContentGroupService: PlaylistContentGroupService,
   ) {}
 
   @ApiParam({ name: 'id' })
-  @Get(':id/contents')
-  @ApiOperation({ summary: 'Get contents by playlist id' })
+  @Get(':id/content-groups')
+  @ApiOperation({ summary: 'Get content group by playlist id' })
   @ApiOkResponse({
-    description: 'The content have been successfully found',
-    type: ResponseContentsDto,
+    description: 'The content group have been successfully found',
+    type: ResponseContentGroupsDto,
   })
   async getContents(
     @Param('id') playlistId: Playlist['id'],
-  ): Promise<ResponseContentsDto> {
-    return this.playlistContentService.getContents(playlistId);
+  ): Promise<ResponseContentGroupsDto> {
+    return this.playlistContentGroupService.getContents(playlistId);
   }
 }

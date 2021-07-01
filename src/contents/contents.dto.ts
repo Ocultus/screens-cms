@@ -1,29 +1,30 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEnum, IsOptional } from 'class-validator';
-import { ContentType } from './content.entity';
+import { IsString, IsUUID } from 'class-validator';
 
 export class CreateContentDto {
-  @IsEnum(ContentType)
-  @ApiProperty({ enum: ContentType, enumName: 'ContentType' })
-  contentType: ContentType;
+  @IsString()
+  @ApiProperty()
+  category: string;
 }
 
 export class UpdateContentDto {
-  @IsEnum(ContentType)
-  @IsOptional()
-  @ApiPropertyOptional({ enum: ContentType, enumName: 'ContentType' })
-  contentType?: ContentType;
+  @IsString()
+  @ApiPropertyOptional()
+  category?: string;
+  @IsUUID()
+  @ApiPropertyOptional({ type: String, format: 'uuid' })
+  contentGroupid?: string;
 }
 
 export class ResponseContentDto {
   @ApiProperty({ type: String, format: 'uuid' })
   id: string;
-
-  @ApiProperty({ enum: ContentType, enumName: 'ContentType' })
-  contentType: ContentType;
-}
-
-export class ResponseContentsDto {
-  @ApiProperty({ type: () => [ResponseContentDto] })
-  contents: ResponseContentDto[];
+  @ApiProperty({ type: String, format: 'uri' })
+  url: string;
+  @ApiProperty()
+  key: string;
+  @ApiProperty()
+  category: string;
+  @ApiProperty({ type: String, format: 'uuid' })
+  contentGroupId: string;
 }

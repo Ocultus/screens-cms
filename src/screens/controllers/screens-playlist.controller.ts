@@ -33,7 +33,7 @@ export class ScreenPlaylistController {
 
   @ApiParam({ name: 'id' })
   @Get(':id/playlist')
-  @ApiOperation({ summary: 'Get screens by event id' })
+  @ApiOperation({ summary: 'Get playlists by screen id' })
   @ApiOkResponse({
     description: 'The screens have been successfully found',
     type: ResponsePlaylistDto,
@@ -53,7 +53,7 @@ export class ScreenPlaylistController {
   })
   @UseInterceptors(CheckScreenExistsInterceptor)
   async createPlaylist(
-    @User('id') userId: string,
+    @User('sub') userId: string,
     @Body() createPlaylistDto: CreatePlaylistDto,
     @Param('id') screenId: Screen['id'],
   ): Promise<ResponsePlaylistDto> {

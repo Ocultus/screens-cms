@@ -54,7 +54,7 @@ export class EventScreenController {
   })
   @Post(':id/screen')
   async createScreen(
-    @User('id') userId: string,
+    @User('sub') userId: string,
     @Body() createScreenDto: CreateScreenDto,
     @Param('id') eventId: Event['id'],
   ) {

@@ -2,7 +2,6 @@ import { Controller, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { CheckScreenExistsInterceptor } from 'src/screens/screens-exists.interceptor';
 import { User } from 'src/users/user.entity';
 import { CheckPlaylistOwnerGuard } from '../guards/playlists-owner.guard';
 import { Playlist } from '../playlist.entity';
@@ -33,7 +32,7 @@ import { PlaylistService } from '../services/playlists.service';
       decorators: [UseGuards(CheckPlaylistOwnerGuard)],
     },
     updateOneBase: {
-      interceptors: [CheckScreenExistsInterceptor],
+      //interceptors: [CheckScreenExistsInterceptor],
       decorators: [UseGuards(CheckPlaylistOwnerGuard)],
     },
   },

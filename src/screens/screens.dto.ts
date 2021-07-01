@@ -26,7 +26,7 @@ export class ResponseScreenDto {
   @ApiProperty()
   title: string;
 
-  @ApiProperty({ type: String, format: 'uuid' })
+  @ApiProperty()
   userId: string;
 
   @ApiProperty({ type: String, format: 'uuid' })

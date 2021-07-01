@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Event } from 'src/events/event.entity';
 import { Playlist } from 'src/playlists/playlist.entity';
 import { User } from 'src/users/user.entity';
@@ -19,7 +18,7 @@ export class Screen {
   @Column({ type: 'varchar' })
   title: string;
 
-  @Column({ type: 'uuid' })
+  @Column({ type: 'varchar' })
   userId: string;
 
   @Column({ type: 'uuid' })

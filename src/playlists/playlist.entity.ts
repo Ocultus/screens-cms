@@ -7,13 +7,16 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  Unique,
 } from 'typeorm';
-import { PlaylistToContent } from 'src/playlist-to-contents/playlist-to-content.entity';
+import { PlaylistToContentGroup } from 'src/playlist-to-content-groups/playlist-to-content-group.entity';
 
 const tableName = 'playlists';
+export const screenIdUniqueConstraint = 'UNIQUE_SCREEN';
 @Entity({
   name: tableName,
 })
+@Unique(screenIdUniqueConstraint, ['screenId'])
 export class Playlist {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -21,7 +24,7 @@ export class Playlist {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'uuid' })
+  @Column({ type: 'varchar' })
   userId: string;
 
   @Column({ type: 'uuid' })
@@ -41,8 +44,8 @@ export class Playlist {
   screen?: Screen;
 
   @OneToMany(
-    () => PlaylistToContent,
-    (playlistToContent) => playlistToContent.playlist,
+    () => PlaylistToContentGroup,
+    (playlistToContentGroup) => playlistToContentGroup.playlist,
   )
-  playlistToContents?: PlaylistToContent[];
+  playlistToContentGroups?: PlaylistToContentGroup[];
 }
