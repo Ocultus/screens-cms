@@ -10,14 +10,12 @@ import { ResponseContentDto, UpdateContentDto } from '../contents.dto';
 import { S3ResponseDto } from '../types/s3-response';
 import { v4 as uuid } from 'uuid';
 import { AWS_BUCKET_NAME } from 'src/config/configuration';
-import { InjectRepository } from '@nestjs/typeorm';
 import { ContentGroupRepository } from 'src/contentGroups/content-groups.repository';
 
 @Injectable()
 export class ContentService {
   constructor(
     private readonly repository: ContentRepository,
-    @InjectRepository(ContentGroupRepository)
     private readonly сontentGroupRepository: ContentGroupRepository,
   ) {}
 

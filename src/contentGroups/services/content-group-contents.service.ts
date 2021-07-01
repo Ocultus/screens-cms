@@ -15,10 +15,7 @@ import {
 } from 'src/contents/contents.dto';
 
 export class ContentGroupContentSerivce {
-  constructor(
-    @InjectRepository(ContentRepository)
-    private readonly repository: ContentRepository,
-  ) {}
+  constructor(private readonly repository: ContentRepository) {}
 
   async create(
     createContentDto: CreateContentDto,

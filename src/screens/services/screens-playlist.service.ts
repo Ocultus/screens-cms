@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import {
   CreatePlaylistDto,
   ResponsePlaylistDto,
@@ -10,10 +9,7 @@ import { Screen } from '../screen.entity';
 
 @Injectable()
 export class ScreenPlaylistService {
-  constructor(
-    @InjectRepository(PlaylistRepository)
-    private readonly playlistRepository: PlaylistRepository,
-  ) {}
+  constructor(private readonly playlistRepository: PlaylistRepository) {}
 
   async getPlaylist(screenId: Screen['id']): Promise<ResponsePlaylistDto> {
     return this.playlistRepository.findOne({ where: { screenId } });
