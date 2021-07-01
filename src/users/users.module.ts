@@ -1,24 +1,18 @@
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from 'src/auth/services/auth.service';
-import { JWT_SECRET } from 'src/config/configuration';
-import { CryptoModule } from 'src/utils/crypto/crypto.module';
-import { JwtStrategy } from '../auth/strategies/jwt.strategy';
-import { LocalStrategy } from '../auth/strategies/local.strategy';
+import { JwtStrategy } from 'src/auth/strategies/jwt.strategy';
 import { UserRepository } from './user.repository';
 import { UserController } from './users.controller';
 
 @Module({
-  providers: [LocalStrategy, JwtStrategy, AuthService],
-  imports: [
-    JwtModule.register({
-      secret: JWT_SECRET,
-      signOptions: { expiresIn: '10h' },
-    }),
-    TypeOrmModule.forFeature([UserRepository]),
-    CryptoModule,
-  ],
+  providers: [AuthService, JwtStrategy],
   controllers: [UserController],
+  imports: [
+    TypeOrmModule.forFeature([UserRepository]),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+  ],
+  exports: [PassportModule],
 })
 export class UserModule {}

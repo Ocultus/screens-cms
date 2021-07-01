@@ -1,4 +1,8 @@
 export class JwtPayload {
-  email: string;
-  userId: string;
+  iss: string;
+  sub: string;
+  iat: number;
+  exp: number;
+  azp: string;
+  scope: string;
 }
