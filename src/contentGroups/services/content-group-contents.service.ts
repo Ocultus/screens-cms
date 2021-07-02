@@ -12,7 +12,7 @@ import { ContentRepository } from 'src/contents/contents.repository';
 import {
   CreateContentDto,
   ResponseContentDto,
-} from 'src/contents/contents.dto';
+} from 'src/contents/dto/contents.dto';
 
 export class ContentGroupContentSerivce {
   constructor(

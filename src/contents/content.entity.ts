@@ -18,7 +18,6 @@ export class Content {
   //Relations
   @ManyToOne(() => ContentGroup, (contentGroup) => contentGroup.contents, {
     onDelete: 'CASCADE',
-    cascade: true,
   })
   contentGroup?: ContentGroup;
 }

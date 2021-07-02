@@ -21,7 +21,7 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { Content } from './content.entity';
-import { ResponseContentDto, UpdateContentDto } from './contents.dto';
+import { ResponseContentDto, UpdateContentDto } from './dto/contents.dto';
 import { ContentService } from './services/content.service';
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)

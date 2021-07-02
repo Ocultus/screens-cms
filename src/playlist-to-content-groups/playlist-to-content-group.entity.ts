@@ -32,12 +32,17 @@ export class PlaylistToContentGroup {
   playTime: number;
 
   //Relations
-  @ManyToOne(() => Playlist, (playlist) => playlist.playlistToContentGroups)
+  @ManyToOne(() => Playlist, (playlist) => playlist.playlistToContentGroups, {
+    onDelete: 'CASCADE',
+  })
   playlist?: Playlist;
 
   @ManyToOne(
     () => ContentGroup,
     (contentGroup) => contentGroup.playlistToContentGroups,
+    {
+      onDelete: 'CASCADE',
+    },
   )
   contentGroup?: ContentGroup;
 }

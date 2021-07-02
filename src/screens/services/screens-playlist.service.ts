@@ -4,7 +4,7 @@ import { screenIdUniqueConstraint } from 'src/playlists/playlist.entity';
 import {
   CreatePlaylistDto,
   ResponsePlaylistDto,
-} from 'src/playlists/playlists.dto';
+} from 'src/playlists/dto/playlists.dto';
 import { PlaylistRepository } from 'src/playlists/playlists.repository';
 import { User } from 'src/users/user.entity';
 import { Screen } from '../screen.entity';

@@ -24,12 +24,13 @@ export class Event {
 
   //Relations
 
-  @OneToMany(() => Screen, (screen) => screen.event)
+  @OneToMany(() => Screen, (screen) => screen.event, {
+    cascade: true,
+  })
   screens?: Screen[];
 
   @ManyToOne(() => User, (user) => user.events, {
     onDelete: 'CASCADE',
-    cascade: true,
   })
   user?: User;
 }

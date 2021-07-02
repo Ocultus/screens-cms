@@ -33,19 +33,20 @@ export class Playlist {
   //Relations
   @ManyToOne(() => User, (user) => user.playlists, {
     onDelete: 'CASCADE',
-    cascade: true,
   })
   user?: User;
 
   @OneToOne(() => Screen, (screen) => screen.playlist, {
     onDelete: 'CASCADE',
-    cascade: true,
   })
   screen?: Screen;
 
   @OneToMany(
     () => PlaylistToContentGroup,
     (playlistToContentGroup) => playlistToContentGroup.playlist,
+    {
+      cascade: true,
+    },
   )
   playlistToContentGroups?: PlaylistToContentGroup[];
 }

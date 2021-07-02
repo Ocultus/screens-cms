@@ -19,14 +19,20 @@ export class User {
 
   //Relations
   @ApiPropertyOptional({ type: () => [Event] })
-  @OneToMany(() => Event, (event) => event.user)
+  @OneToMany(() => Event, (event) => event.user, {
+    cascade: true,
+  })
   events?: Event[];
 
   @ApiPropertyOptional({ type: () => [Screen] })
-  @OneToMany(() => Screen, (screen) => screen.user)
+  @OneToMany(() => Screen, (screen) => screen.user, {
+    cascade: true,
+  })
   screens?: Screen[];
 
   @ApiPropertyOptional({ type: () => [Playlist] })
-  @OneToMany(() => Playlist, (playlist) => playlist.user)
+  @OneToMany(() => Playlist, (playlist) => playlist.user, {
+    cascade: true,
+  })
   playlists?: Playlist;
 }

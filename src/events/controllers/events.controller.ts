@@ -9,9 +9,8 @@ import {
   ResponseEventDto,
   ResponseEventsDto,
   UpdateEventDto,
-} from '../events.dto';
+} from '../dto/events.dto';
 import { Event } from '../event.entity';
-import { JwtPayload } from 'src/auth/auth-types';
 import { User } from 'src/users/user.entity';
 
 @Crud({

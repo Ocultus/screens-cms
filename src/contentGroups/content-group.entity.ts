@@ -23,9 +23,14 @@ export class ContentGroup {
   @OneToMany(
     () => PlaylistToContentGroup,
     (playlistToContentGroup) => playlistToContentGroup.contentGroup,
+    {
+      cascade: true,
+    },
   )
   playlistToContentGroups?: PlaylistToContentGroup[];
 
-  @OneToMany(() => Content, (content) => content.contentGroup)
+  @OneToMany(() => Content, (content) => content.contentGroup, {
+    cascade: true,
+  })
   contents?: Content[];
 }

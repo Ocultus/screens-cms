@@ -23,7 +23,7 @@ import { ContentGroupContentSerivce } from '../services/content-group-contents.s
 import {
   CreateContentDto,
   ResponseContentDto,
-} from 'src/contents/contents.dto';
+} from 'src/contents/dto/contents.dto';
 import { ContentGroup } from '../content-group.entity';
 import { CheckContentGroupExistsInterceptor } from '../content-groups-exists.interceptor';
 

@@ -10,7 +10,7 @@ import {
   ResponsePlaylistDto,
   ResponsePlaylistsDto,
   UpdatePlaylistDto,
-} from '../playlists.dto';
+} from '../dto/playlists.dto';
 import { PlaylistService } from '../services/playlists.service';
 
 @Crud({

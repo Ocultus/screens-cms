@@ -27,16 +27,16 @@ export class Screen {
   //Relations
   @ManyToOne(() => Event, (event) => event.screens, {
     onDelete: 'CASCADE',
-    cascade: true,
   })
   event?: Event;
 
   @ManyToOne(() => User, (user) => user.screens, {
-    cascade: true,
     onDelete: 'CASCADE',
   })
   user?: User;
 
-  @OneToOne(() => Playlist, (playlist) => playlist.screen)
+  @OneToOne(() => Playlist, (playlist) => playlist.screen, {
+    cascade: true,
+  })
   playlist?: Playlist;
 }
