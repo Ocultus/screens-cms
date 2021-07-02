@@ -24,7 +24,9 @@
     "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
     "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed",
     "schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop",
-    "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync"
+    "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync",
+    "migrate:dev": "yarn typeorm -- migration:run",
+    "migrate:dev:rev": "yarn typeorm -- migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",
