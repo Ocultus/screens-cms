@@ -52,6 +52,9 @@ export class ContentController {
           type: 'string',
           format: 'binary',
         },
+        category: {
+          type: 'varchar',
+        }
       },
     },
   })
