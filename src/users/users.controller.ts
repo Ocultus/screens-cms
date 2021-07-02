@@ -6,9 +6,9 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthService } from 'src/auth/services/auth.service';
-import { ProfileDto } from '../auth/dto/profile.dto';
+import { ProfileDto } from './dto/profile.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
+import { UserService } from './services/users.service';
 import { User } from './user.entity';
 import { User as UserDecorator } from './users.decorator';
 
@@ -17,7 +17,7 @@ import { User as UserDecorator } from './users.decorator';
 @ApiResponse({ status: 400, description: 'Bad request' })
 @ApiResponse({ status: 403, description: 'Forbidden' })
 export class UserController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly userService: UserService) {}
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Get current profile' })
   @ApiOkResponse({
@@ -27,6 +27,6 @@ export class UserController {
   @ApiBearerAuth()
   @Get('profile')
   async getProfile(@UserDecorator() user: User): Promise<ProfileDto> {
-    return this.authService.getProfile(user);
+    return this.userService.getProfile(user);
   }
 }

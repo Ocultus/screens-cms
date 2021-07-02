@@ -3,13 +3,13 @@ import { PassportStrategy } from '@nestjs/passport';
 import { passportJwtSecret } from 'jwks-rsa';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { AUTH0_AUDIENCE, AUTH0_ISSUER_URL } from 'src/config/configuration';
+import { UserService } from 'src/users/services/users.service';
 import { User } from 'src/users/user.entity';
 import { JwtPayload } from '../auth-types';
-import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private authService: AuthService) {
+  constructor(private userService: UserService) {
     super({
       secretOrKeyProvider: passportJwtSecret({
         cache: true,
@@ -25,11 +25,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: JwtPayload): Promise<User> {
+  async validate(payload: any): Promise<User> {
     const email = payload[`${AUTH0_AUDIENCE}/email`];
-    let user = await this.authService.findByEmail(email);
+    let user = await this.userService.findByEmail(email);
     if (!user) {
-      user = await this.authService.save(email);
+      user = await this.userService.save(email);
     }
     return user;
   }
