@@ -53,7 +53,7 @@ export class ScreenPlaylistController {
   })
   @UseInterceptors(CheckScreenExistsInterceptor)
   async createPlaylist(
-    @User('sub') userId: string,
+    @User('id') userId: string,
     @Body() createPlaylistDto: CreatePlaylistDto,
     @Param('id') screenId: Screen['id'],
   ): Promise<ResponsePlaylistDto> {

@@ -17,8 +17,8 @@ export class AuthService {
     return this.userRepository.findOne({ email });
   }
 
-  async save(id: string, email: string): Promise<User> {
-    return this.userRepository.save({ id, email });
+  async save(email: string): Promise<User> {
+    return this.userRepository.save({ email });
   }
   async getProfile(user: JwtPayload): Promise<ProfileDto> {
     if (!user) {

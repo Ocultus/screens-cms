@@ -7,6 +7,6 @@ export class CheckScreenOwnerGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const screen = await this.screenService.findOne(request.params.id);
-    return screen?.userId === request.user?.sub;
+    return screen?.userId === request.user?.id;
   }
 }

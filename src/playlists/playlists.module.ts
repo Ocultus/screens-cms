@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlaylistToContentGroupRepository } from 'src/playlist-to-content-groups/playlist-to-contents-groups.repository';
 import { ScreenModule } from 'src/screens/screens.module';
 import { ScreenRepository } from 'src/screens/screens.repository';
+import { UserRepository } from 'src/users/user.repository';
 import { PlaylistContentGroupController } from './controllers/playlists-content.controller';
 import { PlaylistController } from './controllers/playlists.controller';
 import { PlaylistRepository } from './playlists.repository';

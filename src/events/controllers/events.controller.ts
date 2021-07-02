@@ -12,6 +12,7 @@ import {
 } from '../events.dto';
 import { Event } from '../event.entity';
 import { JwtPayload } from 'src/auth/auth-types';
+import { User } from 'src/users/user.entity';
 
 @Crud({
   model: {
@@ -52,8 +53,8 @@ import { JwtPayload } from 'src/auth/auth-types';
 })
 @CrudAuth({
   property: 'user',
-  persist: (user: JwtPayload) => ({
-    userId: user.sub,
+  persist: (user: User) => ({
+    userId: user.id,
   }),
 })
 @ApiBearerAuth()

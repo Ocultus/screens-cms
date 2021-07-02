@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Screen } from 'src/screens/screen.entity';
 import { Event } from '../events/event.entity';
 import { Playlist } from 'src/playlists/playlist.entity';
@@ -10,7 +10,7 @@ const tableName = 'users';
 })
 export class User {
   @ApiProperty()
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @ApiProperty({ type: String, format: 'email' })

@@ -33,7 +33,7 @@ export class PlaylistService extends TypeOrmCrudService<Playlist> {
       return await super.updateOne(req, dto);
     } catch (error) {
       if (error && error.constraint === screenIdUniqueConstraint) {
-        throw new BadRequestException();
+        throw new BadRequestException('Duplicate screen id');
       }
       throw new BadRequestException();
     }

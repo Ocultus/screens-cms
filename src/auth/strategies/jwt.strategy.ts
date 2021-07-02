@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { passportJwtSecret } from 'jwks-rsa';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { AUTH0_AUDIENCE, AUTH0_ISSUER_URL } from 'src/config/configuration';
+import { User } from 'src/users/user.entity';
 import { JwtPayload } from '../auth-types';
 import { AuthService } from '../services/auth.service';
 
@@ -24,12 +25,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: JwtPayload): Promise<JwtPayload> {
+  async validate(payload: JwtPayload): Promise<User> {
     const email = payload[`${AUTH0_AUDIENCE}/email`];
-    const user = await this.authService.findByEmail(email);
+    let user = await this.authService.findByEmail(email);
     if (!user) {
-      await this.authService.save(payload.sub, email);
+      user = await this.authService.save(email);
     }
-    return payload;
+    return user;
   }
 }

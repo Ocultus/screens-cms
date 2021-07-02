@@ -18,7 +18,7 @@ export class Screen {
   @Column({ type: 'varchar' })
   title: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'uuid' })
   userId: string;
 
   @Column({ type: 'uuid' })

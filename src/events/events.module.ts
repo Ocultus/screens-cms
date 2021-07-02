@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScreenRepository } from 'src/screens/screens.repository';
+import { UserRepository } from 'src/users/user.repository';
 import { EventScreenController } from './controllers/events-screen.controller';
 import { EventContoller } from './controllers/events.controller';
 import { EventRepository } from './events.repository';

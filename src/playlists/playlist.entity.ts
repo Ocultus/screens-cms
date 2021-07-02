@@ -24,7 +24,7 @@ export class Playlist {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'uuid' })
   userId: string;
 
   @Column({ type: 'uuid' })

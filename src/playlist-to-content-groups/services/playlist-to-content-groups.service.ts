@@ -58,13 +58,13 @@ export class PlaylistToContentGroupService extends TypeOrmCrudService<PlaylistTo
         dto.contentGroupId,
       );
       if (!contentGroup) {
-        throw new NotFoundException();
+        throw new NotFoundException('Content group not found');
       }
     }
     if (dto.playlistId) {
       const playlist = this.playlistRepository.findOne(dto.playlistId);
       if (!playlist) {
-        throw new NotFoundException();
+        throw new NotFoundException('Playlist not found');
       }
     }
     try {

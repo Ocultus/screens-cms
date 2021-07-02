@@ -54,7 +54,7 @@ export class ContentController {
         },
         category: {
           type: 'varchar',
-        }
+        },
       },
     },
   })

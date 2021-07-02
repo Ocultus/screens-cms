@@ -76,7 +76,7 @@ export class renameContentGroupAndInitContent1624879587521
 
   async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.renameTable(
-      'playlist-to-content-group',
+      'playlist-to-content-groups',
       'playlist-to-contents',
     );
     await queryRunner.renameColumn(
@@ -84,13 +84,14 @@ export class renameContentGroupAndInitContent1624879587521
       'contentGroupId',
       'contentId',
     );
+
+    await this.dropForeignKeys(queryRunner, 'contents', ['contentGroupId']);
+    await queryRunner.dropTable('contents');
+
     await queryRunner.renameTable('content-groups', 'contents');
     await queryRunner.addColumn(
       'contents',
       new TableColumn({ name: 'url', type: 'text' }),
     );
-
-    await this.dropForeignKeys(queryRunner, 'contents', ['contentGroupId']);
-    await queryRunner.dropTable('contents');
   }
 }
