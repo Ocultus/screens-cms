@@ -10,6 +10,7 @@ import { JwtPayload } from 'src/auth/auth-types';
 import { AuthService } from 'src/auth/services/auth.service';
 import { ProfileDto } from '../auth/dto/profile.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
+import { User } from './user.entity';
 import { User as UserDecorator } from './users.decorator';
 
 @ApiTags('users')
@@ -26,7 +27,7 @@ export class UserController {
   })
   @ApiBearerAuth()
   @Get('profile')
-  async getProfile(@UserDecorator() user: JwtPayload): Promise<ProfileDto> {
+  async getProfile(@UserDecorator() user: User): Promise<ProfileDto> {
     return this.authService.getProfile(user);
   }
 }

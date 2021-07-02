@@ -21,11 +21,11 @@ export class AuthService {
     return this.userRepository.save({ email });
   }
 
-  async getProfile(user: JwtPayload): Promise<ProfileDto> {
+  async getProfile(user: User): Promise<ProfileDto> {
     if (!user) {
       throw new UnauthorizedException();
     }
-    const email = user[`${AUTH0_AUDIENCE}/email`];
+    const email = user.email;
     return { email: email };
   }
 }

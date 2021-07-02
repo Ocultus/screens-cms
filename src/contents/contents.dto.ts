@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsUUID } from 'class-validator';
+import { IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateContentDto {
   @IsString()
@@ -9,9 +9,11 @@ export class CreateContentDto {
 
 export class UpdateContentDto {
   @IsString()
+  @IsOptional()
   @ApiPropertyOptional()
   category?: string;
   @IsUUID()
+  @IsOptional()
   @ApiPropertyOptional({ type: String, format: 'uuid' })
   contentGroupid?: string;
 }
