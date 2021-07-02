@@ -20,6 +20,7 @@ export class AuthService {
   async save(email: string): Promise<User> {
     return this.userRepository.save({ email });
   }
+
   async getProfile(user: JwtPayload): Promise<ProfileDto> {
     if (!user) {
       throw new UnauthorizedException();

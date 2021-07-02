@@ -26,7 +26,7 @@ export class ResponsePlaylistDto {
   @ApiProperty()
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String, format: 'uuid' })
   userId: string;
 
   @ApiProperty({ type: String, format: 'uuid' })
