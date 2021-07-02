@@ -6,7 +6,6 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { JwtPayload } from 'src/auth/auth-types';
 import { AuthService } from 'src/auth/services/auth.service';
 import { ProfileDto } from '../auth/dto/profile.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
