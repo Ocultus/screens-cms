@@ -6,7 +6,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { ProfileDto } from './dto/profile.dto';
+import { ProfileDto } from './profile.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { UserService } from './services/users.service';
 import { User } from './user.entity';

@@ -12,6 +12,6 @@ export class CheckEventOwnerGuard implements CanActivate {
         id: request.params.id,
       },
     });
-    return countOfEvent > 0 ? true : false;
+    return !!countOfEvent;
   }
 }

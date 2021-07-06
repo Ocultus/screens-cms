@@ -12,6 +12,6 @@ export class CheckScreenOwnerGuard implements CanActivate {
         id: request.params.id,
       },
     });
-    return countOfScreen > 0 ? true : false;
+    return !!countOfScreen;
   }
 }

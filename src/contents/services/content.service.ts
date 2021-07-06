@@ -6,7 +6,7 @@ import {
 import { ContentRepository } from '../contents.repository';
 import { Content } from '../content.entity';
 import { S3 } from 'aws-sdk';
-import { ResponseContentDto, UpdateContentDto } from '../dto/contents.dto';
+import { ResponseContentDto, UpdateContentDto } from '../contents.dto';
 import { S3ResponseDto } from '../types/s3-response';
 import { v4 as uuid } from 'uuid';
 import { AWS_BUCKET_NAME } from 'src/config/configuration';
@@ -35,9 +35,9 @@ export class ContentService {
     if (!file) {
       throw new NotFoundException('Content don`t exists');
     }
-    if (updateContentDto.contentGroupid) {
+    if (updateContentDto.contentGroupId) {
       const groupContent = await this.сontentGroupRepository.findOne(
-        updateContentDto.contentGroupid,
+        updateContentDto.contentGroupId,
       );
       if (!groupContent) {
         throw new NotFoundException('Group content not found');

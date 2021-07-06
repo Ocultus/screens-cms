@@ -8,7 +8,7 @@ import { CrudRequest, Override } from '@nestjsx/crud';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { ScreenRepository } from 'src/screens/screens.repository';
 import { Playlist, screenIdUniqueConstraint } from '../playlist.entity';
-import { CreatePlaylistDto, UpdatePlaylistDto } from '../dto/playlists.dto';
+import { CreatePlaylistDto, UpdatePlaylistDto } from '../playlists.dto';
 import { PlaylistRepository } from '../playlists.repository';
 
 @Injectable()

@@ -17,7 +17,7 @@ import {
   CreatePlaylistToContentGroupDto,
   ResponsePlaylistToContentGroupDto,
   UpdatePlaylistToContentGroupDto,
-} from '../dto/playlist-to-content-groups.dto';
+} from '../playlist-to-content-groups.dto';
 import { PlaylistToContentGroupRepository } from '../playlist-to-contents-groups.repository';
 
 @Injectable()

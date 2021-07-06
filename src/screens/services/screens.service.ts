@@ -5,7 +5,7 @@ import { Screen } from '../screen.entity';
 import { CrudRequest, Override } from '@nestjsx/crud';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EventRepository } from 'src/events/events.repository';
-import { UpdateScreenDto } from '../dto/screens.dto';
+import { UpdateScreenDto } from '../screens.dto';
 
 @Injectable()
 export class ScreenService extends TypeOrmCrudService<Screen> {

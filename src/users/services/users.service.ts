@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProfileDto } from 'src/users/dto/profile.dto';
+import { ProfileDto } from 'src/users/profile.dto';
 import { User } from '../user.entity';
 import { UserRepository } from '../user.repository';
 

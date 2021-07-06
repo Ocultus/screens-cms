@@ -9,7 +9,7 @@ import {
   ResponseScreenDto,
   ResponseScreensDto,
   UpdateScreenDto,
-} from '../dto/screens.dto';
+} from '../screens.dto';
 import { ScreenService } from '../services/screens.service';
 import { Screen } from '../screen.entity';
 

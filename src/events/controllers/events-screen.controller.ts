@@ -20,7 +20,7 @@ import {
   CreateScreenDto,
   ResponseScreenDto,
   ResponseScreensDto,
-} from 'src/screens/dto/screens.dto';
+} from 'src/screens/screens.dto';
 import { EventScreenService } from '../services/events-screen.service';
 import { User } from 'src/users/users.decorator';
 import { CheckEventExistsInterceptor } from '../events-exists.interceptor';

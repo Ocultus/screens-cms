@@ -3,7 +3,7 @@ import {
   CreateScreenDto,
   ResponseScreenDto,
   ResponseScreensDto,
-} from 'src/screens/dto/screens.dto';
+} from 'src/screens/screens.dto';
 import { ScreenRepository } from 'src/screens/screens.repository';
 import { User } from 'src/users/user.entity';
 import { Event } from '../event.entity';

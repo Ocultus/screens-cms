@@ -20,7 +20,7 @@ import { Screen } from '../screen.entity';
 import {
   CreatePlaylistDto,
   ResponsePlaylistDto,
-} from 'src/playlists/dto/playlists.dto';
+} from 'src/playlists/playlists.dto';
 import { CheckScreenExistsInterceptor } from '../screens-exists.interceptor';
 import { User } from 'src/users/users.decorator';
 

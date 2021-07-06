@@ -9,7 +9,7 @@ import {
   CreatePlaylistToContentGroupDto,
   ResponsePlaylistToContentGroupDto,
   UpdatePlaylistToContentGroupDto,
-} from './dto/playlist-to-content-groups.dto';
+} from './playlist-to-content-groups.dto';
 import { PlaylistToContentGroupService } from './services/playlist-to-content-groups.service';
 
 @Crud({

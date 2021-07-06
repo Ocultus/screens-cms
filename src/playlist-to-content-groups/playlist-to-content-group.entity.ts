@@ -1,3 +1,5 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsOptional, IsUUID, Min } from 'class-validator';
 import { ContentGroup } from 'src/contentGroups/content-group.entity';
 import { Playlist } from 'src/playlists/playlist.entity';
 import {
@@ -19,15 +21,24 @@ export class PlaylistToContentGroup {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @IsUUID()
+  @ApiProperty({ type: String, format: 'uuid' })
   @Column({ name: 'playlistId', type: 'uuid' })
   playlistId: string;
 
+  @ApiProperty({ type: String, format: 'uuid' })
   @Column({ name: 'contentGroupId', type: 'uuid' })
   contentGroupId: string;
 
+  @Min(1)
+  @ApiPropertyOptional({ type: 'integer' })
+  @IsOptional()
   @Column({ type: 'integer' })
   position: number;
 
+  @Min(1)
+  @ApiProperty()
+  @IsOptional()
   @Column({ name: 'playTime', type: 'real' })
   playTime: number;
 

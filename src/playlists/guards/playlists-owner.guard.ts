@@ -12,6 +12,6 @@ export class CheckPlaylistOwnerGuard implements CanActivate {
         userId: request.user.id,
       },
     });
-    return countOfPlaylist > 0 ? true : false;
+    return !!countOfPlaylist;
   }
 }

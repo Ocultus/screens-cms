@@ -9,7 +9,7 @@ import {
   ResponseEventDto,
   ResponseEventsDto,
   UpdateEventDto,
-} from '../dto/events.dto';
+} from '../events.dto';
 import { Event } from '../event.entity';
 import { User } from 'src/users/user.entity';
 
