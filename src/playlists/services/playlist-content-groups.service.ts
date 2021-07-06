@@ -1,19 +1,26 @@
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ResponseContentGroupsDto } from 'src/contentGroups/content-groups.dto';
+import { CrudRequest, Override } from '@nestjsx/crud';
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+import { ContentGroup } from 'src/contentGroups/content-group.entity';
+import { ContentGroupRepository } from 'src/contentGroups/content-groups.repository';
 import { PlaylistToContentGroupRepository } from 'src/playlist-to-content-groups/playlist-to-contents-groups.repository';
-import { Playlist } from '../playlist.entity';
 
-export class PlaylistContentGroupService {
+@Injectable()
+export class PlaylistContentGroupService extends TypeOrmCrudService<ContentGroup> {
   constructor(
+    readonly repository: ContentGroupRepository,
     @InjectRepository(PlaylistToContentGroupRepository)
-    private readonly playlistToContentRepository: PlaylistToContentGroupRepository,
-  ) {}
+    readonly playlistToContentGroupRepository: PlaylistToContentGroupRepository,
+  ) {
+    super(repository);
+  }
 
-  async getContents(
-    playlistId: Playlist['id'],
-  ): Promise<ResponseContentGroupsDto> {
-    const playlistToContentGroups = await this.playlistToContentRepository.find(
-      {
+  @Override()
+  async getMany(req: CrudRequest) {
+    const playlistId = req.options.params.playlistId;
+    const playlistToContentGroups =
+      await this.playlistToContentGroupRepository.find({
         join: {
           alias: 'playlist-to-contents',
           leftJoinAndSelect: {
@@ -22,11 +29,10 @@ export class PlaylistContentGroupService {
         },
         where: { playlistId },
         order: { position: 'ASC' },
-      },
-    );
+      });
     const foundContentGroups = playlistToContentGroups.map(
       (obj) => obj.contentGroup,
     );
-    return { contents: foundContentGroups };
+    return foundContentGroups;
   }
 }

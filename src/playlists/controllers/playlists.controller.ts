@@ -32,7 +32,6 @@ import { PlaylistService } from '../services/playlists.service';
       decorators: [UseGuards(CheckPlaylistOwnerGuard)],
     },
     updateOneBase: {
-      //interceptors: [CheckScreenExistsInterceptor],
       decorators: [UseGuards(CheckPlaylistOwnerGuard)],
     },
   },

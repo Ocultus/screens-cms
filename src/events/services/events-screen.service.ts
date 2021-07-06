@@ -1,35 +1,11 @@
-import { InjectRepository } from '@nestjs/typeorm';
-import {
-  CreateScreenDto,
-  ResponseScreenDto,
-  ResponseScreensDto,
-} from 'src/screens/screens.dto';
+import { Injectable } from '@nestjs/common';
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { ScreenRepository } from 'src/screens/screens.repository';
-import { User } from 'src/users/user.entity';
-import { Event } from '../event.entity';
+import { Screen } from '../../screens/screen.entity';
 
-export class EventScreenService {
-  constructor(
-    @InjectRepository(ScreenRepository)
-    private readonly screenRepository: ScreenRepository,
-  ) {}
-
-  async getScreens(eventId: Event['id']): Promise<ResponseScreensDto> {
-    const foundScreens: ResponseScreenDto[] = await this.screenRepository.find({
-      where: { eventId },
-    });
-    return { screens: foundScreens };
-  }
-
-  async createScreen(
-    createScreenDto: CreateScreenDto,
-    eventId: Event['id'],
-    userId: User['id'],
-  ): Promise<ResponseScreenDto> {
-    return await this.screenRepository.save({
-      ...createScreenDto,
-      eventId,
-      userId,
-    });
+@Injectable()
+export class EventScreenService extends TypeOrmCrudService<Screen> {
+  constructor(readonly repository: ScreenRepository) {
+    super(repository);
   }
 }

@@ -30,6 +30,6 @@ async function bootstrap() {
     region: AWS_REGION,
   });
 
-  await app.listen(APPLICATION_PORT);
+  await app.listen(APPLICATION_PORT | 3000);
 }
 bootstrap();

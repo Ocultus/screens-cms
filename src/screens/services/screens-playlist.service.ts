@@ -1,35 +1,32 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { screenIdUniqueConstraint } from 'src/playlists/playlist.entity';
+import { CrudRequest } from '@nestjsx/crud';
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+import {
+  Playlist,
+  screenIdUniqueConstraint,
+} from 'src/playlists/playlist.entity';
 import {
   CreatePlaylistDto,
   ResponsePlaylistDto,
 } from 'src/playlists/playlists.dto';
 import { PlaylistRepository } from 'src/playlists/playlists.repository';
-import { User } from 'src/users/user.entity';
-import { Screen } from '../screen.entity';
 
 @Injectable()
-export class ScreenPlaylistService {
+export class ScreenPlaylistService extends TypeOrmCrudService<Playlist> {
   constructor(
     @InjectRepository(PlaylistRepository)
-    private readonly playlistRepository: PlaylistRepository,
-  ) {}
-
-  async getPlaylist(screenId: Screen['id']): Promise<ResponsePlaylistDto> {
-    return this.playlistRepository.findOne({ where: { screenId } });
+    readonly repository: PlaylistRepository,
+  ) {
+    super(repository);
   }
-  async createPlaylist(
-    userId: User['id'],
-    createPlaylistDto: CreatePlaylistDto,
-    screenId: Screen['id'],
+
+  async createOne(
+    req: CrudRequest,
+    dto: CreatePlaylistDto,
   ): Promise<ResponsePlaylistDto> {
     try {
-      return await this.playlistRepository.save({
-        ...createPlaylistDto,
-        screenId,
-        userId,
-      });
+      return await super.createOne(req, dto);
     } catch (error) {
       if (error && error.constraint === screenIdUniqueConstraint) {
         throw new BadRequestException('Duplicate screen id');

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ContentGroupRepository } from 'src/contentGroups/content-groups.repository';
 import { PlaylistToContentGroupRepository } from 'src/playlist-to-content-groups/playlist-to-contents-groups.repository';
 import { ScreenModule } from 'src/screens/screens.module';
 import { ScreenRepository } from 'src/screens/screens.repository';
@@ -17,6 +18,7 @@ import { PlaylistService } from './services/playlists.service';
       PlaylistRepository,
       PlaylistToContentGroupRepository,
       ScreenRepository,
+      ContentGroupRepository,
     ]),
     ScreenModule,
   ],
