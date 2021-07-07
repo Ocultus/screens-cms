@@ -1,0 +1,13 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "test",
+    "password": "test",
+    "database": "test",
+    "entities": ["dist/**/*.entity.js"],
+    "seeds": ["dist/seeds/**/*.js"],
+    "factories": ["dist/factories/**/*.js"],
+    "subscribers": ["src/**/**/**/*.subscriber.js"],
+    "synchronize": true
+}

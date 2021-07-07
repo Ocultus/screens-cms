@@ -1,0 +1,60 @@
+Table users{
+  id uuid [pk]
+  email varchar
+}
+
+Table events{
+  id uuid [pk]
+  name varchar
+  userId uuid
+}
+
+Table screens{
+  id uuid [pk]
+  title varchar
+  userId uuid
+  eventId uuid
+}
+
+Table playlists{
+  id uuid [pk]
+  name varchar
+  userId uuid
+  screenId uuid
+}
+
+Enum content_types{
+  video
+  audio
+  image
+  html
+}
+
+Table content_groups{
+  id uuid [pk]
+  type content_type
+}
+
+Table contents {
+  id uuid [pk]
+  url text 
+  category varchar
+  contentGroupId uuid
+}
+
+Table playlist_to_content_groups{
+  id uuid [pk]
+  playlistId uuid
+  contentGroupId uuid
+  position integer
+  playtime real
+}
+
+ref: users.id < events.userId
+ref: users.id < screens.userId
+ref: users.id < playlists.userId
+ref: events.id < screens.eventId
+ref: screens.id - playlists.screenId
+ref: playlists.id < playlist_to_content_groups.playlistId
+ref: content_groups.id < playlist_to_content_groups.contentGroupId
+ref: content_groups.id < contents.contentGroupId
