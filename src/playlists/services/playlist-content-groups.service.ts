@@ -15,9 +15,9 @@ export class PlaylistContentGroupService {
     const playlistToContentGroups = await this.playlistToContentRepository.find(
       {
         join: {
-          alias: 'playlist-to-contents',
+          alias: 'playlist-to-content-groups',
           leftJoinAndSelect: {
-            content: 'playlist-to-contents.content',
+            contentGroup: 'playlist-to-content-groups.contentGroup',
           },
         },
         where: { playlistId },
