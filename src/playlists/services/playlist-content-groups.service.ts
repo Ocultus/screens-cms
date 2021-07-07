@@ -17,7 +17,7 @@ export class PlaylistContentGroupService {
         join: {
           alias: 'playlist-to-contents',
           leftJoinAndSelect: {
-            content: 'playlist-to-contents.content',
+            contentGroup: 'playlist-to-contents.contentGroup',
           },
         },
         where: { playlistId },

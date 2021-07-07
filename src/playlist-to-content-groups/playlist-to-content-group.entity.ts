@@ -26,6 +26,7 @@ export class PlaylistToContentGroup {
   @Column({ name: 'playlistId', type: 'uuid' })
   playlistId: string;
 
+  @IsUUID()
   @ApiProperty({ type: String, format: 'uuid' })
   @Column({ name: 'contentGroupId', type: 'uuid' })
   contentGroupId: string;

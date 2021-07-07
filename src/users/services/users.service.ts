@@ -13,11 +13,11 @@ export class UserService {
   ) {}
 
   async findByEmail(email: User['email']): Promise<User> {
-    return this.userRepository.findOne({ email });
+    return this.repository.findOne({ email });
   }
 
   async save(email: string): Promise<User> {
-    return this.userRepository.save({ email });
+    return this.repository.save({ email });
   }
 
   async getProfile(user: User): Promise<ProfileDto> {

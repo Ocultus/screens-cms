@@ -44,8 +44,8 @@ import { PlaylistToContentGroupService } from './services/playlist-to-content-gr
 })
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
-@ApiTags('playlist-to-group-contents')
-@Controller('playlist-to-group-contents')
+@ApiTags('playlist-to-content-groups')
+@Controller('playlist-to-content-groups')
 export class PlaylistToContentGroupController
   implements CrudController<PlaylistToContentGroup>
 {
